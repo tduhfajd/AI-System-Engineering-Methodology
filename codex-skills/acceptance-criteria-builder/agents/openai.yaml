@@ -1,0 +1,6 @@
+interface:
+  display_name: "BA Acceptance"
+  short_description: "Собирает acceptance criteria"
+  default_prompt: "Use $acceptance-criteria-builder to create acceptance criteria, negative cases, and validation-ready acceptance conditions."
+policy:
+  allow_implicit_invocation: true

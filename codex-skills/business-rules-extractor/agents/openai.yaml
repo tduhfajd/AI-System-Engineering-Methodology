@@ -1,0 +1,6 @@
+interface:
+  display_name: "BA Rules"
+  short_description: "Выделяет business rules"
+  default_prompt: "Use $business-rules-extractor to extract explicit business rules, calculations, and transition logic from the source material."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,37 @@
+---
+name: business-rules-extractor
+description: Use when business rules, constraints, calculation logic, state-transition rules, or policy-level exceptions must be extracted, normalized, or validated as explicit BA artifacts.
+---
+
+# Business Rules Extractor
+
+## Обязательные источники
+
+- `../../methodology/ba-layer-model.md`
+- `../../templates/business-rules-catalog-template.md`
+
+## Используй skill, когда нужно
+
+- выделить business rules из требований или исходного ТЗ
+- отделить policy logic от feature descriptions
+- собрать расчетные правила и state-transition rules
+- найти rule conflicts и gaps
+
+## Сделай
+
+1. Извлеки явные и implied business rules.
+2. Классифицируй rules по категориям.
+3. Выдели расчетные, eligibility и transition rules.
+4. Зафиксируй conflicts, overrides и gaps.
+
+## Обязательный выход
+
+- `Business Rules Catalog`
+- calculation rules
+- transition rules
+- rule conflicts and gaps
+
+## Границы
+
+- Не скрывай правила внутри prose requirements.
+- Не выдумывай policy decisions без source basis.

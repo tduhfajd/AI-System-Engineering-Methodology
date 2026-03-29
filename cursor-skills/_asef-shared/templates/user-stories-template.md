@@ -1,0 +1,40 @@
+# User Stories
+
+## 1. Область документа
+
+- Для какого продукта / release составлен backlog:
+- Почему user stories нужны в этом проекте:
+
+## 2. Story Catalog
+
+| ID | Story | Role | Business Value | Priority | Связанные Use Cases | Acceptance Criteria |
+|---|---|---|---|---|---|---|
+| US-001 |  |  |  |  |  |  |
+
+## 3. Story Details
+
+### 3.1 Story: <Название>
+
+- ID:
+- Формулировка:
+- Business Value:
+- Preconditions:
+- Notes:
+
+## 4. Story Slicing Rules
+
+- Как истории режутся:
+- Что считается слишком крупной историей:
+- Какие истории должны оставаться вместе:
+
+## 5. Ограничения использования
+
+- Какие требования нельзя описывать только через stories:
+- Какие части scope должны ссылаться на use cases и business rules:
+
+## 6. Пробелы и риски
+
+- Story:
+- Риск:
+- Требуемое уточнение:
+

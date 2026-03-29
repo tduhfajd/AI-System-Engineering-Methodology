@@ -1,0 +1,6 @@
+interface:
+  display_name: "Stage 0 Normalization"
+  short_description: "Нормализует входной материал"
+  default_prompt: "Use $stage-00-normalization to convert raw input into a normalized brief with assumptions, contradictions, and open questions."
+policy:
+  allow_implicit_invocation: true

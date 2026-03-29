@@ -1,0 +1,6 @@
+interface:
+  display_name: "Template Loader"
+  short_description: "Подгружает шаблоны артефактов"
+  default_prompt: "Use $artifact-template-loader to load the correct canonical template for a target methodology artifact."
+policy:
+  allow_implicit_invocation: true

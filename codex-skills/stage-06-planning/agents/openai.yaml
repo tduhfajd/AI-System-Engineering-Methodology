@@ -1,0 +1,6 @@
+interface:
+  display_name: "Stage 6 Planning"
+  short_description: "Строит план реализации"
+  default_prompt: "Use $stage-06-planning to turn the final specification package into a delivery plan with work breakdown, dependencies, and milestones."
+policy:
+  allow_implicit_invocation: true

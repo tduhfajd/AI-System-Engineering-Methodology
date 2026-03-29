@@ -1,0 +1,6 @@
+interface:
+  display_name: "Methodology Orchestrator"
+  short_description: "Управляет этапами методологии"
+  default_prompt: "Use $methodology-orchestrator to decide the next valid stage and enforce handoff and gate rules."
+policy:
+  allow_implicit_invocation: true

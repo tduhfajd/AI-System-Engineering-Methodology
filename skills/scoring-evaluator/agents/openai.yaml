@@ -1,0 +1,6 @@
+interface:
+  display_name: "Scoring Evaluator"
+  short_description: "Считает score и confidence"
+  default_prompt: "Use $scoring-evaluator to calculate axis scores, total score, confidence, and readiness recommendation for a stage or full package."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "BA Use Cases"
+  short_description: "Строит use case model"
+  default_prompt: "Use $use-case-modeler to create use case inventory, detailed use cases, and scenario-level traceability."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Stage 3 Modeling"
+  short_description: "Строит логическую модель системы"
+  default_prompt: "Use $stage-03-system-modeling to build flows, states, entities, decisions, and exception behavior from approved requirements."
+policy:
+  allow_implicit_invocation: true

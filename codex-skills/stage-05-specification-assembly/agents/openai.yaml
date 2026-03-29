@@ -1,0 +1,6 @@
+interface:
+  display_name: "Stage 5 Assembly"
+  short_description: "Собирает пакет спецификаций"
+  default_prompt: "Use $stage-05-specification-assembly to assemble the final documentation package from prior-stage outputs using canonical templates."
+policy:
+  allow_implicit_invocation: true

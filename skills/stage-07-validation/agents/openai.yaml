@@ -1,0 +1,6 @@
+interface:
+  display_name: "Stage 7 Validation"
+  short_description: "Проверяет readiness пакета"
+  default_prompt: "Use $stage-07-validation to validate completeness, consistency, executability, and readiness of the final package."
+policy:
+  allow_implicit_invocation: true

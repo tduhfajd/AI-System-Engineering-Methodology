@@ -1,0 +1,6 @@
+interface:
+  display_name: "Stage 4 Architecture"
+  short_description: "Проектирует архитектурные границы"
+  default_prompt: "Use $stage-04-architecture-design to convert the logical model into components, interfaces, boundaries, and architectural decisions."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Stage 2 Requirements"
+  short_description: "Извлекает тестируемые требования"
+  default_prompt: "Use $stage-02-requirements-extraction to derive functional, non-functional, data, and integration requirements from the problem model."
+policy:
+  allow_implicit_invocation: true

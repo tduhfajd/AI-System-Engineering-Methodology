@@ -1,0 +1,6 @@
+interface:
+  display_name: "Stage 1 Problem"
+  short_description: "Формализует проблему и цели"
+  default_prompt: "Use $stage-01-problem-formalization to turn normalized input into a formal problem statement, actors, goals, and constraints."
+policy:
+  allow_implicit_invocation: true

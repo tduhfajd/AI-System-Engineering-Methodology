@@ -1,0 +1,6 @@
+interface:
+  display_name: "Traceability Checker"
+  short_description: "Проверяет трассировку артефактов"
+  default_prompt: "Use $traceability-checker to verify traceability from source input through requirements, design, planning, and validation artifacts."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "BA Domain Data"
+  short_description: "Строит domain model и data dictionary"
+  default_prompt: "Use $domain-data-modeler to define domain entities, relationships, lifecycle logic, and a BA-grade data dictionary."
+policy:
+  allow_implicit_invocation: true
