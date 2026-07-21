@@ -13,11 +13,14 @@
 - `author_type`
 - `inputs_snapshot`
 - `artifacts_produced`
+- `ba_artifacts_produced`
 - `artifacts_updated`
 - `assumptions_created`
 - `gaps_identified`
+- `ba_gaps_identified`
 - `blocking_issues`
 - `traceability_links`
+- `ba_traceability_links`
 - `quality_checks`
 - `human_decisions_required`
 - `gate_decision`
@@ -27,6 +30,7 @@
 
 - stage packet не должен содержать неявные входы
 - unresolved gaps нельзя silently удалять
+- BA-layer gaps нельзя silently удалять
 - blocking issues должны переноситься downstream или явно закрываться
 - `next_stage_input` должен быть пригоден к прямой передаче следующему stage skill
 
@@ -43,11 +47,14 @@
   "author_type": "ai",
   "inputs_snapshot": {},
   "artifacts_produced": [],
+  "ba_artifacts_produced": [],
   "artifacts_updated": [],
   "assumptions_created": [],
   "gaps_identified": [],
+  "ba_gaps_identified": [],
   "blocking_issues": [],
   "traceability_links": [],
+  "ba_traceability_links": [],
   "quality_checks": [],
   "human_decisions_required": [],
   "gate_decision": {},

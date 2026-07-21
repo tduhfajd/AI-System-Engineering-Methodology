@@ -12,10 +12,15 @@
 
 - `Problem Statement`
 - `Actor Map`
+- `Stakeholder Map`
 - `Goals and Non-Goals`
 - `Success Metrics`
+- `Business Context and Scope`
+- `Glossary`
 - `Functional Requirements Set`
 - `Business Rules Register`
+- `Use Case Inventory / Use Case Model`
+- `Acceptance Criteria Seed`
 - `Non-Functional Requirements Baseline`
 - `Data Requirements`
 - `Integration Requirements`
@@ -44,6 +49,7 @@
 - у каждого документа есть четкий scope и он не противоречит другим документам
 - traceability от документов к prior-stage outputs сохранена
 - open gaps, assumptions и deferred decisions явно видимы в пакете
+- BA-layer artifacts либо включены явно, либо встроены в конечные документы без потери смысла
 - пакет достаточно конкретен для execution planning и final readiness validation
 
 ## Основные выходы
@@ -55,8 +61,14 @@
 5. `API Specification`
 6. `Data Model`
 7. `UX / User Flows`
-8. `Specification Consistency and Traceability Register`
-9. `Specification Assembly Review Decision`
+8. `Business Rules Catalog`
+9. `Use Case Model`
+10. `Domain Model`
+11. `Data Dictionary`
+12. `Acceptance Criteria Catalog`
+13. `User Stories`, если required
+14. `Specification Consistency and Traceability Register`
+15. `Specification Assembly Review Decision`
 
 ## Каноническая модель выхода
 
@@ -149,7 +161,64 @@ Data Model должна консолидировать:
 
 Его роль — сделать user interaction logic понятной design и implementation teams.
 
-### 8. Specification Consistency and Traceability Register
+### 8. Business Rules Catalog
+
+Должен консолидировать:
+
+- правила eligibility
+- правила переходов состояний
+- расчетные правила
+- ограничения и запреты
+- policy-level exception logic
+
+### 9. Use Case Model
+
+Должен консолидировать:
+
+- ключевые actor-driven сценарии
+- preconditions
+- main flows
+- alternative flows
+- exception flows
+- postconditions
+
+### 10. Domain Model
+
+Должен консолидировать:
+
+- доменные сущности
+- logical attributes
+- relationships
+- cardinality
+- lifecycle notes
+
+### 11. Data Dictionary
+
+Должен консолидировать:
+
+- перечень сущностей и полей
+- обязательность полей
+- бизнес-смысл полей
+- допустимые значения и ограничения
+- происхождение и downstream usage, если это критично
+
+### 12. Acceptance Criteria Catalog
+
+Должен консолидировать:
+
+- приемочные критерии по use cases и high-impact requirements
+- expected outcomes
+- negative cases
+- boundaries of acceptable behavior
+
+### 13. User Stories
+
+Если story layer required, он должен:
+
+- сохранять traceability к use cases и требованиям
+- помогать planning, а не подменять BA-layer
+
+### 14. Specification Consistency and Traceability Register
 
 Этот реестр должен фиксировать:
 
@@ -161,7 +230,7 @@ Data Model должна консолидировать:
 
 Он нужен, чтобы final package не превратился в набор disconnected files.
 
-### 9. Specification Assembly Review Decision
+### 15. Specification Assembly Review Decision
 
 Этап должен завершаться одним из статусов:
 
@@ -175,13 +244,26 @@ Data Model должна консолидировать:
 
 Нужно определить, какие validated outputs feed'ят какие final artifacts. Нельзя просто blindly duplicate content: каждое утверждение должно попасть в правильный документ, а в остальных местах на него следует ссылаться.
 
-### Шаг 2. Собрать стратегические документы
+### Шаг 2. Собрать стратегические и BA-документы
 
-Нужно собрать PDD и FS из problem, goal, actor и requirement artifacts.
+Нужно собрать:
 
-### Шаг 3. Собрать технические design documents
+- PDD
+- FS
+- Business Rules Catalog
+- Use Case Model
+- Acceptance Criteria Catalog
+- User Stories, если они required
 
-Нужно собрать SDD, API Specification и Data Model из outputs system modeling и architecture design.
+### Шаг 3. Собрать технические и data/BA design documents
+
+Нужно собрать:
+
+- SDD
+- API Specification
+- Data Model
+- Domain Model
+- Data Dictionary
 
 ### Шаг 4. Собрать quality и interaction documents
 
@@ -192,6 +274,7 @@ Data Model должна консолидировать:
 Нужно убедиться, что:
 
 - терминология согласована
+- glossary не расходится с use cases, data model и architecture
 - scope boundaries совпадают
 - requirement statements не конфликтуют с design statements
 - API и data structures не противоречат architecture или flow logic
@@ -245,6 +328,8 @@ Human review обязателен для:
 - [ ] У каждого документа есть четкий scope и purpose.
 - [ ] Cross-document terminology согласована.
 - [ ] Functional, architectural, data, API и UX views не противоречат друг другу.
+- [ ] BA-layer artifacts собраны или явно встроены без потери содержания.
+- [ ] Business rules, use cases, domain model и acceptance criteria сохраняют traceability к upstream stages.
 - [ ] Open assumptions и gaps видимы, а не скрыты.
 - [ ] Для high-impact content сохранена traceability к previous stages.
 - [ ] Пакет пригоден для planning без существенной переинтерпретации.
@@ -269,6 +354,12 @@ Human review обязателен для:
 Симптом: unresolved assumptions или conflicts исчезают из final package, создавая ложную уверенность delivery team.
 
 Митигирующее действие: требовать явный carry-forward of gaps и deferred decisions.
+
+### Failure Mode: BA collapse during assembly
+
+Симптом: бизнес-правила, use cases, domain analysis и acceptance criteria растворяются внутри инженерных документов и теряют проверяемость.
+
+Митигирующее действие: требовать явные BA artifacts или их явно прослеживаемое встраивание в final package.
 
 ### Failure Mode: package without usability
 

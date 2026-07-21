@@ -8,10 +8,10 @@
 
 ## Вход
 
-- [demo-input.md](demo-input.md)
-- [stage-packet-examples.md](stage-packet-examples.md)
-- [negative-path-examples.md](negative-path-examples.md)
-- [demo-runtime-transcript.md](demo-runtime-transcript.md)
+- [demo-input.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/demo-input.md)
+- [stage-packet-examples.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/stage-packet-examples.md)
+- [negative-path-examples.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/negative-path-examples.md)
+- [demo-runtime-transcript.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/demo-runtime-transcript.md)
 
 ## Ожидаемый маршрут
 

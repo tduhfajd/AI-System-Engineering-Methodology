@@ -2,7 +2,7 @@
 
 ## Цель
 
-Преобразовать формализованную проблему в структурированный, тестируемый и трассируемый набор требований, который определяет, что будущая система должна делать, каким ограничениям должна соответствовать и какие условия обязаны оставаться явными для дальнейшего моделирования и проектирования.
+Преобразовать формализованную проблему в структурированный, тестируемый и трассируемый набор требований и BA-артефактов, который определяет, что будущая система должна делать, каким ограничениям должна соответствовать, какие сценарии обязана поддерживать и какие условия обязаны оставаться явными для дальнейшего моделирования и проектирования.
 
 ## Зачем нужен этот этап
 
@@ -15,6 +15,8 @@
 - `Goals and Non-Goals`
 - `Success Metrics`
 - `Constraint Register`
+- `Business Context and Scope`
+- `Glossary`
 - `Risk Framing`
 - `Problem Review Decision`
 
@@ -29,8 +31,11 @@
 - функциональные требования сформулированы как testable statements
 - нефункциональные требования явно заданы и классифицированы
 - бизнес-правила явно перечислены
+- use cases или use case inventory явно сформированы
+- acceptance criteria seed явно сформирован
 - требования к данным явно перечислены
 - интеграционные требования явно перечислены там, где они релевантны
+- условная потребность в user stories явно определена
 - существует requirement-to-source traceability
 - конфликты требований, assumptions и unresolved gaps явно зафиксированы
 - набор требований достаточно конкретен для перехода к логическому моделированию системы
@@ -40,11 +45,13 @@
 1. `Functional Requirements Set`
 2. `Business Rules Register`
 3. `Non-Functional Requirements Baseline`
-4. `Data Requirements`
-5. `Integration Requirements`
-6. `Requirement Traceability Matrix`
-7. `Requirement Gaps and Conflicts Register`
-8. `Requirements Review Decision`
+4. `Use Case Inventory / Use Case Model`
+5. `Acceptance Criteria Seed`
+6. `Data Requirements`
+7. `Integration Requirements`
+8. `Requirement Traceability Matrix`
+9. `Requirement Gaps and Conflicts Register`
+10. `Requirements Review Decision`
 
 ## Каноническая модель выхода
 
@@ -98,20 +105,45 @@ Business rules не должны быть спрятаны внутри feature 
 - measurable threshold
 - directional expectation с пометкой unresolved measurement
 
-### 4. Data Requirements
+### 4. Use Case Inventory / Use Case Model
+
+Нужно явно зафиксировать:
+
+- ключевые actor-driven сценарии
+- trigger
+- preconditions
+- main success flow
+- alternative flows, если они materially affect requirements
+- exception flows, если они materially affect requirements
+
+Для менее сложных проектов достаточно use case inventory. Для коммерческих, multi-role или process-heavy систем нужен полноценный use case model.
+
+### 5. Acceptance Criteria Seed
+
+Нужно собрать начальные приемочные критерии для:
+
+- high-impact functional requirements
+- ключевых business rules
+- критичных exception paths
+
+Этот артефакт еще не заменяет финальный acceptance criteria catalog, но должен быть достаточен, чтобы downstream system modeling и validation не теряли test intent.
+
+### 6. Data Requirements
 
 Нужно зафиксировать:
 
 - обязательные сущности или записи
 - ключевые атрибуты
+- relationships и cardinality expectations, если они уже видимы
 - ожидания по жизненному циклу
 - ограничения по хранению или удалению, если известны
 - ownership или authority constraints, если известны
 - правила качества данных
+- требования к glossary alignment для сущностей и статусов
 
 Этот этап задает obligations для данных, а не финальную физическую data model.
 
-### 5. Integration Requirements
+### 7. Integration Requirements
 
 Нужно зафиксировать:
 
@@ -123,7 +155,7 @@ Business rules не должны быть спрятаны внутри feature 
 
 Если интеграции пока только предполагаются, это должно быть явно помечено.
 
-### 6. Requirement Traceability Matrix
+### 8. Requirement Traceability Matrix
 
 Каждое требование должно трассироваться хотя бы к одному из элементов:
 
@@ -137,7 +169,7 @@ Business rules не должны быть спрятаны внутри feature 
 
 Ни одно high-impact requirement не должно существовать без traceability.
 
-### 7. Requirement Gaps and Conflicts Register
+### 9. Requirement Gaps and Conflicts Register
 
 Нужно фиксировать:
 
@@ -149,7 +181,7 @@ Business rules не должны быть спрятаны внутри feature 
 
 Для каждого пункта должно быть отмечено, блокирует ли он system modeling.
 
-### 8. Requirements Review Decision
+### 10. Requirements Review Decision
 
 Этап должен завершаться одним из статусов:
 
@@ -178,6 +210,12 @@ Business rules не должны быть спрятаны внутри feature 
 - data
 - integration
 - business rule
+
+Дополнительно нужно определить:
+
+- есть ли обязательность для `use cases`
+- есть ли обязательность для `user stories`
+- нужен ли permission / role rule layer
 
 Это не позволяет quality expectations и policy logic раствориться внутри feature lists.
 
@@ -210,11 +248,25 @@ Business rules не должны быть спрятаны внутри feature 
 Нужно проверить, покрывает ли набор требований:
 
 - основные actor journeys
+- ключевые use cases
 - error и exception behavior
 - quality expectations
 - obligations по обработке данных
 - integrations
 - operational concerns
+
+### Шаг 6a. Собрать use cases и acceptance criteria seed
+
+Для каждого high-impact сценария нужно определить:
+
+- actor
+- goal
+- preconditions
+- normal flow
+- exception paths
+- acceptance criteria seed
+
+Если проект backlog-oriented, на этом же этапе можно дополнительно готовить user stories, но они не должны подменять use cases, business rules и data analysis.
 
 ### Шаг 7. Построить traceability
 
@@ -242,6 +294,7 @@ AI может:
 - переписывать vague statements в более testable form
 - находить overlaps, contradictions и missing areas
 - собирать начальную traceability matrix
+- собирать use case inventory, acceptance criteria seed и initial data requirements
 
 AI не должен:
 
@@ -256,6 +309,8 @@ Human review обязателен для:
 
 - утверждения, какие candidate requirements действительно входят в scope
 - валидации business rules и non-functional expectations
+- подтверждения ключевых use cases
+- подтверждения критичных сущностей, атрибутов и data obligations
 - решения, допустимы ли unresolved gaps для перехода на следующий этап
 - принятия или отклонения requirements review decision
 
@@ -263,8 +318,11 @@ Human review обязателен для:
 
 - [ ] Functional requirements атомарны и testable.
 - [ ] Business rules явно выделены и не смешаны с feature descriptions.
+- [ ] Use cases или use case inventory явно сформированы.
+- [ ] Acceptance criteria seed существует для high-impact behavior.
 - [ ] Non-functional requirements видимы, а не implied.
 - [ ] Data requirements описаны на уровне obligations.
+- [ ] Требования к сущностям, атрибутам и отношениям достаточно явны для downstream domain modeling.
 - [ ] Integration requirements определены или явно помечены как отсутствующие.
 - [ ] Требования не противоречат non-goals и ограничениям предыдущих этапов.
 - [ ] Для high-impact requirements существует traceability.
@@ -285,6 +343,18 @@ Human review обязателен для:
 
 Митигирующее действие: требовать отдельную NFR baseline уже на этапе extraction.
 
+### Failure Mode: missing use case layer
+
+Симптом: требования перечислены списком, но не показывают actor-driven сценарии и exception flows.
+
+Митигирующее действие: делать use case inventory обязательным минимумом, а для сложных систем — полноценный use case model.
+
+### Failure Mode: shallow data analysis
+
+Симптом: data requirements ограничиваются общими словами и не дают downstream modeler'у понять сущности, атрибуты, relationships и lifecycle obligations.
+
+Митигирующее действие: требовать explicit initial data requirements с entity-level detail.
+
 ### Failure Mode: untestable language
 
 Симптом: требования сформулированы красивым, но непроверяемым языком.
@@ -303,6 +373,10 @@ Human review обязателен для:
 # Requirements Extraction
 
 ## Functional Requirements
+
+## Use Cases
+
+## Acceptance Criteria Seed
 
 ## Business Rules
 

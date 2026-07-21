@@ -7,6 +7,9 @@ description: Use when evaluating a stage or a full methodology package against t
 
 ## Обязательные источники
 
+- `../_asef-shared/references/output-language-policy.md`
+- `../_asef-shared/references/run-manifest.md`
+
 - `../_asef-shared/automation/scoring-confidence-model.md`
 - `../_asef-shared/methodology/ba-layer-model.md`
 - `../_asef-shared/templates/scoring-report-template.md`
@@ -36,6 +39,14 @@ description: Use when evaluating a stage or a full methodology package against t
 - confidence
 - blocking issues
 - readiness recommendation
+
+## Журнал прогона
+
+Если известна папка результатов, прочитай и обнови `RUN.md`: зафиксируй созданные артефакты, открытые вопросы, решения, blockers и следующее действие.
+
+## Языковой контракт
+
+Следуй `output-language-policy.md`: весь результат и все создаваемые артефакты оформляй на русском языке и выполни проверку языка перед выдачей.
 
 ## Границы
 

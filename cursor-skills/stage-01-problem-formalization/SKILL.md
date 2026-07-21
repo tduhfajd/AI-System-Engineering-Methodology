@@ -7,7 +7,11 @@ description: Use when running Stage 1 of the AI System Engineering Methodology t
 
 ## Обязательные источники
 
+- `../_asef-shared/references/output-language-policy.md`
+- `../_asef-shared/references/run-manifest.md`
+
 - `../_asef-shared/methodology/01-problem-formalization.md`
+- `../_asef-shared/methodology/artifact-applicability-matrix.md`
 - `../_asef-shared/methodology/ba-layer-model.md`
 - `../_asef-shared/automation/stage-automation-contracts.md`
 - `../_asef-shared/templates/stakeholder-map-template.md`
@@ -32,8 +36,10 @@ description: Use when running Stage 1 of the AI System Engineering Methodology t
 4. Выдели goals и non-goals.
 5. Зафиксируй constraints, metrics и risks.
 6. Собери glossary seed для критичных доменных терминов.
-7. Верни `Problem Review Decision`.
-8. Сверяй форму handoff с stage packet examples и не продвигай этап, если проблема неотделима от нерешенного scope conflict.
+7. Выбери минимально достаточный пакет по матрице применимости и зафиксируй исключённые артефакты с причиной.
+8. Для новой идеи проведи опциональную проверку `Гипотеза ценности` и отрази её сигнал валидации в `RUN.md`.
+9. Верни `Problem Review Decision`.
+10. Сверяй форму handoff с stage packet examples и не продвигай этап, если проблема неотделима от нерешенного scope conflict.
 
 ## Обязательный выход
 
@@ -46,10 +52,20 @@ description: Use when running Stage 1 of the AI System Engineering Methodology t
 - `Business Context and Scope`
 - `Glossary`
 - `Risk Framing`
+- `Artifact Applicability Decision`
+- `Value Hypothesis`, если применимо
 - `ba_artifacts_produced`
 - `quality_checks`
 - `human_review_state`
 - `Problem Review Decision`
+
+## Журнал прогона
+
+Если известна папка результатов, прочитай и обнови `RUN.md`: зафиксируй созданные артефакты, открытые вопросы, решения, blockers и следующее действие.
+
+## Языковой контракт
+
+Следуй `output-language-policy.md`: весь результат и все создаваемые артефакты оформляй на русском языке и выполни проверку языка перед выдачей.
 
 ## Границы
 

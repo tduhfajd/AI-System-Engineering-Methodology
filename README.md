@@ -1,380 +1,228 @@
-<p align="center">
-  <strong>Методология AI System Engineering</strong><br/>
-  <sub>Идея → нормализованный вход → спецификации → план → валидация готовности к разработке</sub>
-</p>
+# AI System Engineering Methodology
 
-<p align="center">
-  <a href="#stages-list"><img src="https://img.shields.io/badge/этапы-0%E2%80%937-0969da?style=flat-square" alt="Этапы 0–7"/></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/tduhfajd/AI-System-Engineering-Methodology?style=flat-square" alt="License"/></a>
-  <a href="methodology/README.md"><img src="https://img.shields.io/badge/docs-methodology-238636?style=flat-square" alt="Документация"/></a>
-  <a href="codex-skills/README.md"><img src="https://img.shields.io/badge/bundle-Codex-6f42c1?style=flat-square" alt="Codex"/></a>
-  <a href="cursor-skills/README.md"><img src="https://img.shields.io/badge/bundle-Cursor-1f6feb?style=flat-square" alt="Cursor"/></a>
-</p>
+Методология и набор skills для превращения идеи, сырого текста или существующего ТЗ в согласованный пакет BA- и engineering-документации. Основной сценарий — работа через Codex; Cursor поддерживается тем же portable bundle.
 
-<p align="center">
-  <sub><strong>Автор:</strong> Вадим Евграфов · <a href="https://t.me/vadim_evgrafov">Telegram @vadim_evgrafov</a> · <a href="mailto:vadim@evgrafov.biz">vadim@evgrafov.biz</a></sub>
-</p>
+## Что делает система
 
----
+1. При необходимости проверяет жизнеспособность новой стартап-идеи в России.
+2. Нормализует вход и явно фиксирует факты, допущения, противоречия и открытые вопросы.
+3. Проводит вход через problem framing, требования, моделирование, архитектуру, спецификации, план и validation.
+4. Сохраняет состояние в `RUN.md`, чтобы прогон можно было продолжить в следующем task.
+5. Не скрывает gaps: каждый вопрос получает gate-статус и допустимое следующее действие.
 
-Методология превращает идею, сырой текст, частичное или полное ТЗ в **согласованный, проверяемый пакет документации**, достаточный для разработки без бесконечных уточнений.
+Все выходные артефакты по умолчанию оформляются на русском языке. Английский допустим только для технических сокращений, идентификаторов, имён технологий и дословных цитат. Полное правило: [output-language-policy.md](skills/_shared/references/output-language-policy.md).
 
-**Два режима использования**
-
-| Режим | Описание |
-|--------|----------|
-| **Как база знаний** | Читать этапы, шаблоны и контракты вручную |
-| **Как skill-система** | Те же этапы через **Codex** (`codex-skills`, префикс `$…`) или **Cursor** (`cursor-skills` → `.cursor/skills/` или `~/.cursor/skills/`) |
-
-**Навигация:** [Состав проекта](#whats-inside) · [Быстрый старт](#quick-start) · [Маршрут этапов](#stage-pipeline) · [Как работает](#how-it-works) · [Артефакты](#artifacts-output) · [Skills](#skills-reference) · [Примеры](#request-examples) · [Структура репозитория](#repo-tree) · [Автор](#author)
-
-<a id="stage-pipeline"></a>
-
-### Маршрут этапов
-
-```mermaid
-flowchart LR
-  S0([0 Нормализация]) --> S1([1 Проблема])
-  S1 --> S2([2 Требования])
-  S2 --> S3([3 Модель системы])
-  S3 --> S4([4 Архитектура])
-  S4 --> S5([5 Спецификации])
-  S5 --> S6([6 Планирование])
-  S6 --> S7([7 Валидация])
-```
-
-<a id="whats-inside"></a>
-
-## Что входит в проект
-
-- [methodology](methodology) — полное описание методологии по этапам: от нормализации входа до финальной валидации.
-- [methodology/ba-layer-model.md](methodology/ba-layer-model.md) — целевая модель BA-слоя внутри методологии.
-- [methodology/ba-layer-migration-guide.md](methodology/ba-layer-migration-guide.md) — как усиливать существующие кейсы и коммерческий handoff.
-- [templates](templates) — канонические русскоязычные шаблоны итоговых артефактов.
-- [automation](automation) — stage-to-stage контракты, scoring model и правила handoff для AI и human-in-the-loop.
-- [technical-assignment-1.md](technical-assignment-1.md) — исходное ТЗ, на основе которого собрана методология.
-- [skills-technical-assignment.md](skills-technical-assignment.md) — ТЗ на skill-систему поверх методологии.
-- [skills](skills) — исходные skill-спецификации: orchestrator, этапы 0–7, BA и вспомогательные проверки.
-- [codex-skills](codex-skills) — portable bundle для `~/.codex/skills` (включая `agents/openai.yaml` для Codex CLI).
-- [cursor-skills](cursor-skills) — тот же набор и `_asef-shared`, адаптированный под Cursor (`SKILL.md` без `agents/`). Подробнее: [cursor-skills/README.md](cursor-skills/README.md).
-
-<a id="quick-start"></a>
-
-## Быстрый старт
-
-### 1. Клонировать репозиторий (по желанию)
+## Быстрый старт с Codex
 
 ```bash
 git clone git@github.com:tduhfajd/AI-System-Engineering-Methodology.git
 cd AI-System-Engineering-Methodology
-```
-
-### 2. Установить skills
-
-**Codex** — скопировать bundle:
-
-```bash
 cp -R ./codex-skills/* ~/.codex/skills/
 ```
 
-**Cursor** — в проект (обязательно вместе с `_asef-shared`):
-
-```bash
-mkdir -p /path/to/your/project/.cursor/skills
-cp -R ./cursor-skills/* /path/to/your/project/.cursor/skills/
-```
-
-Либо в `~/.cursor/skills/`, если skills нужны во всех проектах.
-
-После установки рядом должны быть: `methodology-orchestrator`, `stage-00-normalization` … `stage-07-validation`, BA-skills и `_asef-shared`.
-
-### 3. Подготовить вход
-
-Подойдут идея в паре предложений, сырой текст, частичное или готовое ТЗ — обычно файл вроде `~/project/tz.md` или `./specification.md`.
-
-### 4. Запустить orchestrator
-
-В **Codex** skill часто вызывают с префиксом `$`:
+После установки в `~/.codex/skills` должны находиться папки skills и `_asef-shared`. Начните новый task и передайте агенту входной файл и папку для результатов:
 
 ```text
-$methodology-orchestrator проанализируй ~/project/tz.md и начни прогон методологии с Stage 0. Складывай артефакты в ~/project/asef-run
+$methodology-orchestrator возьми ~/project/tz.md, выбери подходящий режим и сохраняй все артефакты в ~/project/asef-run
 ```
 
-В **Cursor** сформулируй тот же запрос естественным языком (например, «используй skill methodology-orchestrator …»): агент подберёт skill по `description` в `SKILL.md`.
+## Быстрый старт с Cursor
 
-Дальше можно кратко: «продолжай» или «перейди к следующему этапу». Orchestrator определяет этап, вызывает нужный stage skill, останавливается на human checkpoint и не обходит заблокированные gate.
+Скопируйте содержимое `cursor-skills/` в `.cursor/skills/` проекта либо в `~/.cursor/skills/`. Папка `_asef-shared` должна лежать рядом с каталогами skills.
 
-<a id="how-it-works"></a>
-
-## Как работает система
-
-### Базовый принцип
-
-Skills с инструкциями в `SKILL.md`. В **Codex** — вызов через `$`. В **Cursor** — skills из `.cursor/skills/` или `~/.cursor/skills/`; агент применяет skill по описанию, без обязательного `$`.
-
-Пример для Codex:
+В Cursor skill можно вызвать естественным запросом:
 
 ```text
-$stage-00-normalization нормализуй ~/project/tz.md и сохрани результат в ~/project/asef-run
+Используй methodology-orchestrator: проанализируй ./tz.md, выбери режим и сохрани результаты в ./asef-run.
 ```
 
-Агент загружает skill и выполняет workflow из `SKILL.md`.
+## Как выбрать маршрут
 
-### Когда использовать `$methodology-orchestrator`
+### 1. Новая стартап-идея в России
 
-Основной вход для большинства сценариев: полный прогон от файла до validation, подсказка следующего этапа, работа с human checkpoints без запоминания имён stage skills.
+Если не подтверждены проблема, спрос, рынок, канал или экономика, начните с pre-gate:
 
 ```text
-$methodology-orchestrator возьми ~/project/tz.md, начни с Stage 0 и веди по всем этапам. Результаты в ~/project/asef-run
+$roast-startup-ru прожарь идею сервиса для ... в режиме интерактивный. Сохрани verdict, гипотезы и эксперименты в ~/project/asef-run/RUN.md
 ```
 
-### Когда вызывать stage skills напрямую
+`$roast-startup-ru` вернёт `GO`, `VALIDATE`, `PIVOT` или `STOP`.
 
-Если нужно переиграть один этап, уже есть stage packet с предыдущего шага или точечное усиление анализа:
+- `GO` — переходите к Stage 0.
+- `VALIDATE` — можно собрать discovery-пакет, но незавершённый эксперимент остаётся риском для реализации.
+- `PIVOT` — измените идею и повторите проверку.
+- `STOP` — не начинайте спецификацию без явного решения продолжать вопреки verdict.
+
+Подробный контракт передачи: [idea-viability-pre-gate.md](methodology/idea-viability-pre-gate.md).
+
+### 2. Выберите режим orchestrator
+
+| Режим | Когда использовать | Результат |
+|---|---|---|
+| `quick_discovery` | Идея или сырой бриф; нужен быстрый, но структурированный старт | Stage 0–2: нормализованный бриф, проблема, требования, правила, варианты использования и критерии приёмки |
+| `full_delivery` | Нужен пакет для передачи в разработку | Полный маршрут Stage 0–7 с human checkpoints |
+| `existing_spec_review` | Уже есть ТЗ и нужно найти gaps, противоречия или усилить его | Нормализация и targeted review без автоматической генерации полного пакета |
+
+Примеры:
 
 ```text
-$stage-01-problem-formalization возьми ~/project/asef-run/00-stage-packet.json и собери Stage 1 в ~/project/asef-run
+$methodology-orchestrator обработай ~/project/idea.md в режиме quick_discovery; результаты в ~/project/asef-run
 ```
 
 ```text
-$stage-02-requirements-extraction возьми ~/project/asef-run/01-stage-packet.json и извлеки требования, business rules, use cases и acceptance criteria seed
+$methodology-orchestrator проверь ~/project/existing-spec.md в режиме existing_spec_review; результаты в ~/project/asef-run
 ```
 
 ```text
-$stage-07-validation проверь пакет в ~/project/asef-run и дай readiness decision
+$methodology-orchestrator проведи ~/project/approved-brief.md через full_delivery; останавливайся на обязательных human checkpoints; результаты в ~/project/asef-run
 ```
 
-## Основной маршрут для новичка
+## Что происходит в полном маршруте
 
-### Вариант 1. Полный end-to-end прогон
+```mermaid
+flowchart LR
+  V["Pre-gate: жизнеспособность идеи (опционально)"] --> S0["0. Нормализация"]
+  S0 --> S1["1. Проблема и ценность"]
+  S1 --> S2["2. Требования"]
+  S2 --> S3["3. Модель системы"]
+  S3 --> S4["4. Архитектура"]
+  S4 --> S5["5. Спецификации"]
+  S5 --> S6["6. План"]
+  S6 --> S7["7. Validation"]
+  S5 -. независимая проверка .-> R["Independent Package Review"]
+  S7 -. независимая проверка .-> R
+```
 
-1. Файл с идеей или ТЗ.
-2. Папка для результатов, например `~/project/asef-run`.
-3. Запуск orchestrator.
-4. Ответы на checkpoint-вопросы (scope, assumptions, ограничения).
-5. После Stage 7 — validation report и implementation handoff.
+| Этап | Основной результат | Когда требуется человек |
+|---|---|---|
+| 0. Нормализация | Бриф, реестры assumptions, contradictions и вопросов | Если противоречие меняет scope или решение |
+| 1. Формализация проблемы | Проблема, акторы, цели, non-goals, метрики, риски | Подтверждение problem framing и границ |
+| 2. Требования | Требования, business rules, use cases, acceptance criteria | Подтверждение high-impact поведения |
+| 3. Моделирование | Flows, состояния, domain/data model | При неясной доменной логике или данных |
+| 4. Архитектура | Компоненты, интерфейсы, ownership, решения | Подтверждение ключевых trade-offs |
+| 5. Спецификации | PDD, FS, SDD, NFR, API, data/UX и BA-артефакты | Подтверждение пакета перед планированием |
+| 6. Планирование | Work packages, зависимости, milestones, risks | При выборе release boundaries |
+| 7. Validation | Readiness decision, scoring, defects и handoff | Подтверждение готовности или ограничений |
+
+## RUN.md и работа между task
+
+В папке результатов orchestrator создаёт или обновляет `RUN.md`. Это источник текущего состояния: выбранный режим, текущий этап, артефакты, решения, вопросы, blockers и следующий шаг.
+
+Чтобы продолжить работу в новом task, передайте файл явно:
 
 ```text
-$methodology-orchestrator проанализируй ~/project/tz.md. Полный прогон методологии, артефакты в ~/project/asef-run
+$methodology-orchestrator продолжи прогон по ~/project/asef-run/RUN.md и существующим stage packets
 ```
 
-### Вариант 2. По этапам вручную
+Не удаляйте `RUN.md` и `*-stage-packet.json`: они нужны, чтобы следующий skill не восстановил контекст по догадке.
 
-1. `stage-00-normalization` → подтверждение assumptions и contradictions.
-2. По очереди `stage-01` … `stage-07`.
-3. Между этапами — `*-stage-packet.json`.
+## Как gates обрабатывают вопросы
+
+| Категория | Значение | Действие |
+|---|---|---|
+| `implementation_blocker` | Без решения небезопасно начинать реализацию или выпуск | Не передавать пакет в разработку |
+| `stage_blocker` | Следующий конкретный этап невозможно выполнить корректно | Остановить этот переход и запросить решение |
+| `carry_forward` | Вопрос не мешает текущему этапу | Сохранить в `RUN.md`, stage packet и последующем review |
+
+`carry_forward` не является автоматическим блокером: у него всё равно должны быть владелец, срок или условие пересмотра.
+
+## Выбор объёма документации
+
+Не все проекты требуют весь набор артефактов. На Stage 1 фиксируется минимально достаточный пакет согласно [матрице применимости](methodology/artifact-applicability-matrix.md): для небольшого веб-сервиса он компактнее, для API/интеграции, AI-системы или регулируемого B2B-проекта — шире.
+
+Исключённый артефакт не «забывается»: его отсутствие должно быть обосновано в scope и validation.
+
+## Все skills
+
+### Вход и orchestration
+
+| Skill | Используйте, когда |
+|---|---|
+| `$roast-startup-ru` | Нужно проверить жизнеспособность новой стартап-идеи в России до решения о разработке |
+| `$methodology-orchestrator` | Нужен маршрут, выбор режима, gates, `RUN.md` и передача между этапами |
+
+### Основные этапы
+
+| Skill | Используйте, когда |
+|---|---|
+| `$stage-00-normalization` | Нужно структурировать идею, сырой текст или готовое ТЗ |
+| `$stage-01-problem-formalization` | Нужны проблема, акторы, scope, метрики, минимальный пакет артефактов и гипотеза ценности |
+| `$stage-02-requirements-extraction` | Нужны тестируемые требования, правила, use cases и acceptance criteria |
+| `$stage-03-system-modeling` | Нужны потоки, состояния, доменная модель и данные |
+| `$stage-04-architecture-design` | Нужны компоненты, границы, интерфейсы и архитектурные решения |
+| `$stage-05-specification-assembly` | Нужно собрать финальный пакет документации из валидированных результатов |
+| `$stage-06-planning` | Нужен исполнимый план delivery |
+| `$stage-07-validation` | Нужно оценить readiness, defects, остаточные риски и условия handoff |
+
+### Точечные и проверочные skills
+
+| Skill | Используйте, когда |
+|---|---|
+| `$artifact-template-loader` | Нужен канонический шаблон конкретного артефакта |
+| `$stakeholder-glossary-builder` | Нужны stakeholder map и glossary |
+| `$business-rules-extractor` | Нужно выделить бизнес-правила и ограничения |
+| `$use-case-modeler` | Нужна модель вариантов использования и exception flows |
+| `$domain-data-modeler` | Нужны domain model, data dictionary и lifecycle сущностей |
+| `$acceptance-criteria-builder` | Нужны проверяемые критерии приёмки, negative cases и UAT checks |
+| `$traceability-checker` | Нужно найти разрывы между входом, требованиями, проектированием и validation |
+| `$scoring-evaluator` | Нужно посчитать scoring и confidence отдельным pass |
+| `$independent-package-review` | Нужна независимая проверка пакета после Stage 5 или 7; он не генерирует недостающие документы вместо фиксации defects |
+
+## Практические запросы
+
+### Усилить готовое ТЗ
 
 ```text
-$stage-00-normalization обработай ~/project/tz.md
+$methodology-orchestrator возьми ~/project/tz.md в режиме existing_spec_review. Найди contradictions, gaps и нетестируемые требования; сохрани review и RUN.md в ~/project/asef-run
 ```
+
+### Собрать только business rules
 
 ```text
-$stage-01-problem-formalization возьми выход Stage 0 и собери problem framing
+$business-rules-extractor выдели бизнес-правила из ~/project/tz.md, укажи источник каждого правила и сохрани каталог в ~/project/asef-run
 ```
+
+### Проверить пакет независимо
 
 ```text
-$stage-02-requirements-extraction продолжи на основе выхода Stage 1
+$independent-package-review проверь ~/project/asef-run после Stage 7. Не дописывай документы; верни evidence, blockers, advisory improvements и verdict готовности
 ```
 
-<a id="artifacts-output"></a>
-
-## Какие артефакты появляются на выходе
-
-Обычно в рабочей папке:
-
-- `00-normalization.md`, `00-stage-packet.json`
-- `01-problem-formalization.md`, `01-stage-packet.json`
-- … по аналогии до `07-validation.md`, `07-stage-packet.json`
-
-При включённом BA-слое дополнительно, например:
-
-- `01-stakeholder-map.md`, `01-glossary.md`, `01-business-context-and-scope.md`
-- `02-business-rules-catalog.md`, `02-use-case-model.md`, `02-acceptance-criteria-seed.md`
-- `03-domain-model.md`, `03-data-dictionary.md`, `03-entity-lifecycle-model.md`
-
-<a id="skills-reference"></a>
-
-## Какие skills есть и когда их вызывать
-
-### Основной
-
-- **`$methodology-orchestrator`** — точка входа почти всегда.
-
-### Stage skills
-
-| Skill | Когда |
-|--------|--------|
-| `$stage-00-normalization` | Структурировать сырой вход |
-| `$stage-01-problem-formalization` | Проблема, scope, stakeholders, glossary |
-| `$stage-02-requirements-extraction` | Требования, business rules, use cases, acceptance criteria seed |
-| `$stage-03-system-modeling` | Flows, состояния, domain model, lifecycle |
-| `$stage-04-architecture-design` | Компоненты, интерфейсы, ownership |
-| `$stage-05-specification-assembly` | Финальный пакет документов |
-| `$stage-06-planning` | Delivery plan |
-| `$stage-07-validation` | Готовность к handoff в разработку |
-
-### BA-supporting (точечная доработка)
-
-- `$stakeholder-glossary-builder` — stakeholder map и glossary
-- `$business-rules-extractor` — явное выделение business rules
-- `$use-case-modeler` — use case model
-- `$domain-data-modeler` — domain model, data dictionary, lifecycle
-- `$acceptance-criteria-builder` — UAT-ready acceptance criteria
-
-### Вспомогательные
-
-- `$artifact-template-loader` — канонический шаблон документа
-- `$traceability-checker` — сквозная трассировка
-- `$scoring-evaluator` — scoring и confidence отдельно
-
-<a id="request-examples"></a>
-
-## Примеры запросов
-
-### Полный прогон по ТЗ
+### Повторить один этап
 
 ```text
-$methodology-orchestrator возьми ~/project/tz.md, начни с Stage 0, веди по human checkpoints, артефакты в ~/project/asef-run
+$stage-03-system-modeling используй ~/project/asef-run/02-stage-packet.json и связанные артефакты; обнови RUN.md и подготовь вход для Stage 4
 ```
 
-### Усилить BA-слой существующего прогона
+## Если использовать методологию вручную
 
-```text
-$stakeholder-glossary-builder возьми ~/project/asef-run/01-problem-formalization.md и собери stakeholder map и glossary
-```
-
-```text
-$use-case-modeler возьми ~/project/asef-run/02-requirements-extraction.md и построй use case model
-```
-
-```text
-$domain-data-modeler возьми ~/project/asef-run/03-system-modeling.md и оформи domain model, data dictionary и entity lifecycle model
-```
-
-### Готовность перед handoff разработчикам
-
-```text
-$stage-07-validation проверь пакет в ~/project/asef-run, посчитай scoring, оцени BA sufficiency и скажи, готов ли он к передаче в разработку
-```
-
-### Только business rules
-
-```text
-$business-rules-extractor выдели business rules из ~/project/tz.md и оформи каталог правил
-```
-
-### Acceptance criteria для UAT
-
-```text
-$acceptance-criteria-builder возьми use cases и requirements из ~/project/asef-run и собери acceptance criteria catalog
-```
-
-## Что делать во время human checkpoints
-
-Остановки на подтверждение — нормальное поведение: scope, non-goals, assumptions, достаточность деталей, explicit constraints перед implementation handoff.
-
-Примеры ответа:
-
-```text
-подтверждаю, продолжаем
-```
-
-```text
-только физлица, одна площадка, без юрлиц и без self-service, продолжай
-```
-
-## Когда лучше не использовать узкий skill вручную
-
-Не начинай с узкоспециализированного skill, если непонятен текущий этап, нет stage packet с предыдущего шага или нужен полный прогон. Тогда:
-
-```text
-$methodology-orchestrator
-```
-
-## Что считать финальным результатом
-
-- артефакты по всем этапам;
-- BA- и engineering-документы;
-- validation report с readiness decision.
-
-Минимально разумный handoff в разработку обычно включает: problem/scope, requirements, domain/data definition, architecture, execution plan, validation report.
-
-## Для чего нужна методология
-
-1. Снимает неоднозначность входа и делает материал пригодным для системной работы.
-2. Пошагово собирает полный пакет продуктовой и инженерной документации.
-3. Проверяет, что пакет действительно готов к реализации, а не только выглядит полным.
-
-## Поддерживаемые типы входа
-
-- идея в 1–2 предложениях;
-- сырой неструктурированный текст;
-- частичное ТЗ;
-- готовое ТЗ для нормализации, проверки и усиления.
-
-## Целевой результат
-
-Итоговый набор артефактов включает, в частности: PDD, Functional Specification, SDD, NFR, API Specification, Data Model, UX/User Flows, Execution Plan, Test Strategy, Validation Criteria.
-
-BA-слой: Stakeholder Map, Glossary, Business Rules Catalog, Use Case Model, Domain Model, Data Dictionary, Acceptance Criteria Catalog, User Stories при необходимости.
-
-<a id="stages-list"></a>
-
-## Этапы методологии
-
-Полное описание — в [methodology/README.md](methodology/README.md). Отдельные документы:
-
-1. [Этап 0: Нормализация](methodology/00-normalization.md)
-2. [Этап 1: Формализация проблемы](methodology/01-problem-formalization.md)
-3. [Этап 2: Извлечение требований](methodology/02-requirements-extraction.md)
-4. [Этап 3: Моделирование системы](methodology/03-system-modeling.md)
-5. [Этап 4: Архитектурное проектирование](methodology/04-architecture-design.md)
-6. [Этап 5: Сборка спецификаций](methodology/05-specification-assembly.md)
-7. [Этап 6: Планирование](methodology/06-planning.md)
-8. [Этап 7: Валидация](methodology/07-validation.md)
-
-## Если использовать методологию без skills
-
-1. [methodology/README.md](methodology/README.md) — пройти этапы 0–7.
-2. Шаблоны — [templates](templates).
-3. Контракты handoff и scoring — [automation](automation).
-
-<a id="repo-tree"></a>
+Читайте [methodology/README.md](methodology/README.md), выбирайте нужные шаблоны из [templates](templates) и сверяйтесь с [automation](automation). Для нового продукта сначала используйте [матрицу применимости](methodology/artifact-applicability-matrix.md), чтобы не создавать лишние документы.
 
 ## Структура репозитория
 
 ```text
 AI-System-Engineering-Methodology/
-├── methodology/          # этапы и BA-модель
-├── templates/            # шаблоны артефактов
-├── automation/           # контракты и scoring
-├── skills/               # исходные спецификации skills
-├── codex-skills/         # bundle для Codex
-├── cursor-skills/        # bundle для Cursor
-├── technical-assignment-1.md
-├── skills-technical-assignment.md
-└── README.md
+├── methodology/      # этапы, pre-gate и матрица применимости
+├── templates/        # русскоязычные шаблоны результатов
+├── automation/       # stage contracts, gates и scoring
+├── skills/           # единственный источник skills
+├── codex-skills/     # генерируемый bundle для Codex
+├── cursor-skills/    # генерируемый bundle для Cursor
+└── scripts/          # сборка и проверки
 ```
 
-## Принципы проекта
+## Поддержка bundles и проверки
 
-- не привязана к конкретному стеку;
-- не зависит от конкретной команды;
-- разделяет роли AI и человека;
-- ориентирована на проверяемый, воспроизводимый результат;
-- пригодна для автоматизации.
+Редактируйте исходники в `skills/`, `methodology/`, `templates/` и `automation/`; не изменяйте `codex-skills/` и `cursor-skills` вручную. После изменений выполните:
 
-<a id="author"></a>
+```bash
+bash scripts/build-bundles.sh
+bash scripts/verify-language-contract.sh
+bash scripts/verify-workflow-extensions.sh
+```
 
-## Авторство и контакты
+`build-bundles.sh --check` проверяет, что portable bundles соответствуют исходникам.
 
-Методология и материалы репозитория: **Вадим Евграфов**.
+## Автор
 
-- Telegram: [@vadim_evgrafov](https://t.me/vadim_evgrafov)
-- Электронная почта: [vadim@evgrafov.biz](mailto:vadim@evgrafov.biz)
-
-## Следующий уровень развития
-
-Уже есть: полный процесс, шаблоны, automation contracts, scoring, BA-layer model, skills и bundles **codex-skills** / **cursor-skills**.
-
-Возможное развитие: расширение исполнимых skills и agent specs; примеры применения на реальных кейсах. В репозитории также есть skill scaffold, mapping и demo input для end-to-end проверки.
+Вадим Евграфов — [Telegram @vadim_evgrafov](https://t.me/vadim_evgrafov) · [vadim@evgrafov.biz](mailto:vadim@evgrafov.biz)

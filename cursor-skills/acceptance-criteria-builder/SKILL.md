@@ -7,6 +7,9 @@ description: Use when high-impact requirements or use cases need explicit accept
 
 ## Обязательные источники
 
+- `../_asef-shared/references/output-language-policy.md`
+- `../_asef-shared/references/run-manifest.md`
+
 - `../_asef-shared/methodology/ba-layer-model.md`
 - `../_asef-shared/templates/acceptance-criteria-template.md`
 
@@ -30,6 +33,14 @@ description: Use when high-impact requirements or use cases need explicit accept
 - `Acceptance Criteria Catalog`
 - negative cases
 - traceability to requirements and use cases
+
+## Журнал прогона
+
+Если известна папка результатов, прочитай и обнови `RUN.md`: зафиксируй созданные артефакты, открытые вопросы, решения, blockers и следующее действие.
+
+## Языковой контракт
+
+Следуй `output-language-policy.md`: весь результат и все создаваемые артефакты оформляй на русском языке и выполни проверку языка перед выдачей.
 
 ## Границы
 

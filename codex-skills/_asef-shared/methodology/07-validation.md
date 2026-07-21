@@ -2,7 +2,7 @@
 
 ## Цель
 
-Определить, действительно ли assembled documentation package готов к реализации, проверяя его по явным критериям completeness, consistency, traceability, executability и residual risk.
+Определить, действительно ли assembled documentation package готов к реализации, проверяя его по явным критериям completeness, consistency, traceability, executability, BA sufficiency и residual risk.
 
 ## Зачем нужен этот этап
 
@@ -17,6 +17,12 @@
 - `API Specification`
 - `Data Model`
 - `UX / User Flows`
+- `Business Rules Catalog`
+- `Use Case Model`
+- `Domain Model`
+- `Data Dictionary`
+- `Acceptance Criteria Catalog`
+- `User Stories`, если required
 - `Specification Consistency and Traceability Register`
 - `Execution Plan`
 - `Work Breakdown Structure`
@@ -36,6 +42,7 @@
 
 - полнота относительно целевого artifact set оценена
 - внутренняя consistency между документами оценена
+- достаточность BA-layer оценена
 - implementation readiness оценена
 - residual risks и open gaps оценены
 - существует formal readiness decision
@@ -117,6 +124,8 @@ Residual risks нельзя путать с unresolved defects.
 
 - artifact completeness
 - cross-document consistency
+- BA completeness
+- BA-to-engineering consistency
 - requirement-to-design traceability
 - adequacy planning package
 - visibility non-functional concerns
@@ -137,19 +146,29 @@ Residual risks нельзя путать с unresolved defects.
 
 - терминология едина
 - scope boundaries совпадают
+- BA artifacts не противоречат engineering artifacts
 - requirements согласованы с architecture и flows
 - API и data definitions не противоречат design
 - planning artifacts соответствуют final specification set
 
-### Шаг 3. Проверить execution sufficiency
+### Шаг 3. Проверить BA sufficiency
+
+Нужно ответить на вопросы:
+
+- достаточно ли stakeholder/business context layer для коммерческого handoff
+- покрывают ли use cases ключевые сценарии и исключения
+- достаточно ли domain model и data dictionary для downstream architecture and data design
+- существуют ли acceptance criteria для high-impact behavior
+
+### Шаг 4. Проверить execution sufficiency
 
 Нужно ответить на вопрос: может ли delivery team начать implementation по пакету без существенных циклов дополнительных уточнений.
 
-### Шаг 4. Проверить traceability и coverage
+### Шаг 5. Проверить traceability и coverage
 
 Нужно убедиться, что high-impact source concerns, goals, requirements и decisions сохраняются до финальных документов и плана.
 
-### Шаг 5. Проверить severity gaps и residual risks
+### Шаг 6. Проверить severity gaps и residual risks
 
 Нужно различить:
 
@@ -157,11 +176,11 @@ Residual risks нельзя путать с unresolved defects.
 - non-blocking gaps
 - blocking defects
 
-### Шаг 6. Принять readiness decision
+### Шаг 7. Принять readiness decision
 
 Нужно сформулировать решение о готовности явно и связать его с validation criteria record.
 
-### Шаг 7. Подготовить handoff recommendation
+### Шаг 8. Подготовить handoff recommendation
 
 Нужно зафиксировать, можно ли начинать implementation и при каких условиях.
 
@@ -173,6 +192,7 @@ AI может:
 - обнаруживать likely contradictions, omissions и weak readiness areas
 - собирать черновик validation report и gap register
 - предлагать readiness classification на основе explicit criteria
+- проверять BA-to-engineering consistency и completeness BA-layer
 
 AI не должен:
 
@@ -194,6 +214,9 @@ Human review обязателен для:
 
 - [ ] Все обязательные артефакты присутствуют и содержательны.
 - [ ] Cross-document consistency проверена.
+- [ ] BA-layer artifacts присутствуют или явно встроены.
+- [ ] Use cases, business rules, domain model и data dictionary достаточны для downstream teams.
+- [ ] Acceptance criteria существуют для high-impact behavior.
 - [ ] Blocking gaps и contradictions явно выделены.
 - [ ] Residual risks явно отделены от defects.
 - [ ] Ready/not ready оценивается по явным критериям.
@@ -207,6 +230,12 @@ Human review обязателен для:
 Симптом: пакет признается готовым только потому, что все файлы существуют, хотя между ними остаются contradictions или structural weakness.
 
 Митигирующее действие: валидировать не по presence files, а по criteria consistency, sufficiency и traceability.
+
+### Failure Mode: engineering-only validation
+
+Симптом: пакет признается готовым по engineering signals, хотя BA-layer недостаточен для коммерческого handoff, UAT или contractual acceptance.
+
+Митигирующее действие: ввести explicit BA sufficiency checks в validation criteria.
 
 ### Failure Mode: optimism bias
 

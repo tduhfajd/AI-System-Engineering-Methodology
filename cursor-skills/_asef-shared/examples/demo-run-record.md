@@ -6,11 +6,11 @@
 
 - Run type: dry-run
 - Goal: проверить, что current skill scaffold покрывает весь маршрут от raw input до readiness decision
-- Input source: [demo-input.md](demo-input.md)
-- Expected route: [demo-run-guide.md](demo-run-guide.md)
-- Stage packet examples: [stage-packet-examples.md](stage-packet-examples.md)
-- Negative-path examples: [negative-path-examples.md](negative-path-examples.md)
-- Runtime transcript: [demo-runtime-transcript.md](demo-runtime-transcript.md)
+- Input source: [demo-input.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/demo-input.md)
+- Expected route: [demo-run-guide.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/demo-run-guide.md)
+- Stage packet examples: [stage-packet-examples.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/stage-packet-examples.md)
+- Negative-path examples: [negative-path-examples.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/negative-path-examples.md)
+- Runtime transcript: [demo-runtime-transcript.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/demo-runtime-transcript.md)
 
 ## 2. Input Summary
 
@@ -317,8 +317,8 @@
 
 ## 7. Recommended Next Actions
 
-1. При необходимости подключить [stage-packet-examples.md](stage-packet-examples.md) напрямую в stage skills как reference layer.
-2. При необходимости подключить [negative-path-examples.md](negative-path-examples.md) напрямую в stage skills как reference layer.
+1. При необходимости подключить [stage-packet-examples.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/stage-packet-examples.md) напрямую в stage skills как reference layer.
+2. При необходимости подключить [negative-path-examples.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/negative-path-examples.md) напрямую в stage skills как reference layer.
 3. Сделать следующий pass уже как execution-oriented validation, а не только documentation scaffold.
 
 ## 8. Dry-Run Verdict

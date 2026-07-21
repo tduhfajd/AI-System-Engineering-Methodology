@@ -1,28 +1,13 @@
 # Codex Skills Bundle
 
-Этот каталог содержит portable bundle skills для установки в `~/.codex/skills`.
+Portable bundle для `~/.codex/skills`. Установите весь каталог вместе с `_asef-shared`:
 
-## Что внутри
+```bash
+cp -R ./codex-skills/* ~/.codex/skills/
+```
 
-- stage skills `stage-00` - `stage-07`
-- `methodology-orchestrator`
-- supporting skills:
-  - `artifact-template-loader`
-  - `traceability-checker`
-  - `scoring-evaluator`
-  - `stakeholder-glossary-builder`
-  - `use-case-modeler`
-  - `business-rules-extractor`
-  - `domain-data-modeler`
-  - `acceptance-criteria-builder`
-- общий reference layer в `_asef-shared`
+Точка входа — `$methodology-orchestrator`. Он выбирает `quick_discovery`, `full_delivery` или `existing_spec_review`, ведёт `RUN.md` и останавливается на обязательных human checkpoints.
 
-## Как установить
+Для новой стартап-идеи в России до Stage 0 доступен `$roast-startup-ru`; его verdict передаётся в методологию через optional pre-gate.
 
-1. Скопируй содержимое этого каталога в `~/.codex/skills`.
-2. Убедись, что вместе со skills скопирована папка `_asef-shared`.
-3. После копирования skills можно вызывать как обычные local Codex skills.
-
-## Ограничение
-
-Этот bundle автономен на уровне skill references, но не содержит runtime automation или внешних интеграций. Он предназначен для использования как knowledge/workflow layer.
+Полная инструкция, примеры запросов, все skills и правила обновления bundle находятся в [корневом README](../README.md).

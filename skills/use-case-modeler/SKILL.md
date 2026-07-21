@@ -7,6 +7,9 @@ description: Use when the methodology needs actor-driven scenario modeling, incl
 
 ## Обязательные источники
 
+- `../_shared/references/output-language-policy.md`
+- `../_shared/references/run-manifest.md`
+
 - `../../methodology/ba-layer-model.md`
 - `../../templates/use-case-model-template.md`
 - `../../templates/acceptance-criteria-template.md`
@@ -32,6 +35,14 @@ description: Use when the methodology needs actor-driven scenario modeling, incl
 - use case to requirement links
 - exception flow notes
 - acceptance criteria seed inputs
+
+## Журнал прогона
+
+Если известна папка результатов, прочитай и обнови `RUN.md`: зафиксируй созданные артефакты, открытые вопросы, решения, blockers и следующее действие.
+
+## Языковой контракт
+
+Следуй `output-language-policy.md`: весь результат и все создаваемые артефакты оформляй на русском языке и выполни проверку языка перед выдачей.
 
 ## Границы
 

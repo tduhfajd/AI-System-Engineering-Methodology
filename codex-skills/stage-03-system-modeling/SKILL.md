@@ -7,6 +7,9 @@ description: Use when running Stage 3 of the AI System Engineering Methodology t
 
 ## Обязательные источники
 
+- `../_asef-shared/references/output-language-policy.md`
+- `../_asef-shared/references/run-manifest.md`
+
 - `../_asef-shared/methodology/03-system-modeling.md`
 - `../_asef-shared/methodology/ba-layer-model.md`
 - `../_asef-shared/automation/stage-automation-contracts.md`
@@ -51,6 +54,14 @@ description: Use when running Stage 3 of the AI System Engineering Methodology t
 - `ba_artifacts_produced`
 - `quality_checks`
 - `System Modeling Review Decision`
+
+## Журнал прогона
+
+Если известна папка результатов, прочитай и обнови `RUN.md`: зафиксируй созданные артефакты, открытые вопросы, решения, blockers и следующее действие.
+
+## Языковой контракт
+
+Следуй `output-language-policy.md`: весь результат и все создаваемые артефакты оформляй на русском языке и выполни проверку языка перед выдачей.
 
 ## Границы
 

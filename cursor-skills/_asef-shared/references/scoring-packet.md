@@ -24,6 +24,8 @@
 - `executability`
 - `risk_exposure`
 - `decision_clarity`
+- `business_clarity`
+- `data_definition_quality`
 
 ## Правила
 
@@ -43,7 +45,9 @@
     "testability": 0,
     "executability": 0,
     "risk_exposure": 0,
-    "decision_clarity": 0
+    "decision_clarity": 0,
+    "business_clarity": 0,
+    "data_definition_quality": 0
   },
   "total_score_5": 0,
   "total_score_100": 0,

@@ -28,7 +28,7 @@
 
 ## 3. Базовые оси оценки
 
-Каждый пакет оценивается минимум по 7 осям:
+Каждый пакет оценивается минимум по 9 осям:
 
 1. `Completeness`
 2. `Consistency`
@@ -37,6 +37,8 @@
 5. `Executability`
 6. `Risk Exposure`
 7. `Decision Clarity`
+8. `Business Clarity`
+9. `Data Definition Quality`
 
 ## 4. Шкала по каждой оси
 
@@ -109,19 +111,39 @@
 - отделены ли факты от допущений
 - нет ли скрытых решений, принятых AI без signoff
 
+### 5.8 Business Clarity
+
+Проверяет:
+
+- достаточно ли выражены actors, stakeholders и business context
+- выделены ли business rules
+- покрыты ли ключевые use cases
+- есть ли acceptance intent для high-impact behavior
+
+### 5.9 Data Definition Quality
+
+Проверяет:
+
+- достаточно ли определены domain entities
+- понятны ли ключевые attributes и relationships
+- описаны ли lifecycle и data obligations
+- пригоден ли data/domain layer для downstream architecture and implementation
+
 ## 6. Рекомендуемые веса
 
 Для финальной оценки полного пакета рекомендуется следующая weight model:
 
 | Axis | Weight |
 |---|---|
-| Completeness | 0.20 |
-| Consistency | 0.20 |
-| Traceability | 0.15 |
-| Testability | 0.15 |
-| Executability | 0.15 |
-| Risk Exposure | 0.10 |
+| Completeness | 0.17 |
+| Consistency | 0.17 |
+| Traceability | 0.13 |
+| Testability | 0.12 |
+| Executability | 0.12 |
+| Risk Exposure | 0.08 |
 | Decision Clarity | 0.05 |
+| Business Clarity | 0.09 |
+| Data Definition Quality | 0.07 |
 
 Сумма весов должна быть равна `1.0`.
 
@@ -149,10 +171,12 @@
 - Executability = 4
 - Risk Exposure = 3
 - Decision Clarity = 4
+- Business Clarity = 4
+- Data Definition Quality = 3
 
 То:
 
-`Total Score = 3.55 / 5`
+`Total Score = 3.56 / 5`
 
 или:
 
@@ -223,6 +247,8 @@ Confidence оценивается отдельно по шкале:
 - `Consistency >= 4`
 - `Executability >= 4`
 - `Testability >= 3`
+- `Business Clarity >= 3`
+- `Data Definition Quality >= 3`
 - blocking defects отсутствуют
 
 ### Ready with explicit constraints
@@ -242,6 +268,8 @@ Confidence оценивается отдельно по шкале:
 - `Completeness < 3`
 - `Consistency < 3`
 - `Executability < 3`
+- `Business Clarity < 3`
+- `Data Definition Quality < 3`
 - есть blocking defects, мешающие старту
 
 ## 11. Stage-level scoring
@@ -250,9 +278,10 @@ Scoring можно применять и к отдельным этапам.
 
 ### Recommended stage-level use
 
-- Stages 0-2: акцент на Completeness, Decision Clarity, Traceability
-- Stages 3-4: акцент на Consistency, Traceability, Risk Exposure
-- Stage 5: акцент на Completeness и Consistency
+- Stages 0-1: акцент на Completeness, Decision Clarity, Traceability, Business Clarity
+- Stage 2: акцент на Testability, Business Clarity, Traceability
+- Stages 3-4: акцент на Consistency, Traceability, Data Definition Quality, Risk Exposure
+- Stage 5: акцент на Completeness, Consistency, Business Clarity
 - Stage 6: акцент на Executability
 - Stage 7: акцент на full weighted model
 
@@ -281,7 +310,9 @@ Scoring можно применять и к отдельным этапам.
     "testability": 0,
     "executability": 0,
     "risk_exposure": 0,
-    "decision_clarity": 0
+    "decision_clarity": 0,
+    "business_clarity": 0,
+    "data_definition_quality": 0
   },
   "total_score_5": 0,
   "total_score_100": 0,
@@ -313,6 +344,8 @@ Automation layer может использовать scoring:
 ### Recommended escalation rules
 
 - Если `Consistency <= 2`, обязательный human review
+- Если `Business Clarity <= 2`, обязательный BA-oriented human review
+- Если `Data Definition Quality <= 2`, нельзя переходить к architecture handoff или implementation handoff
 - Если `Executability <= 2`, нельзя переходить к implementation handoff
 - Если `Confidence = Low`, нельзя auto-approve даже при высоком score
 

@@ -14,15 +14,20 @@
 
 - Problem Statement
 - Actor Map
+- Stakeholder Map
 - Goals and Non-Goals
 - Success Metrics
 - Constraint Register
+- Business Context and Scope
+- Glossary
 - Risk Framing
 
 ## Stage 2
 
 - Functional Requirements Set
 - Business Rules Register
+- Use Case Inventory / Use Case Model
+- Acceptance Criteria Seed
 - Non-Functional Requirements Baseline
 - Data Requirements
 - Integration Requirements
@@ -33,6 +38,9 @@
 - System Flow Model
 - State Transition Model
 - Domain Entity Model
+- Entity Lifecycle Model
+- Use Case Realization
+- Domain Model
 - Decision and Rule Model
 - Exception and Edge Case Model
 
@@ -53,6 +61,12 @@
 - API Specification
 - Data Model
 - UX / User Flows
+- Business Rules Catalog
+- Use Case Model
+- Domain Model
+- Data Dictionary
+- Acceptance Criteria Catalog
+- User Stories, if required
 
 ## Stage 6
 
@@ -67,6 +81,7 @@
 - Validation Report
 - Readiness Decision
 - Defect and Gap Register
+- BA Sufficiency Assessment
 - Residual Risk Register
 - Implementation Handoff Recommendation
 - Scoring Report

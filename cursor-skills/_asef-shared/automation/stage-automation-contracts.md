@@ -39,11 +39,14 @@
 - `stage_id`
 - `stage_name`
 - `artifacts_produced`
+- `ba_artifacts_produced`
 - `artifacts_updated`
 - `assumptions_created`
 - `gaps_identified`
+- `ba_gaps_identified`
 - `blocking_issues`
 - `traceability_links`
+- `ba_traceability_links`
 - `quality_checks`
 - `human_decisions_required`
 - `gate_decision`
@@ -63,6 +66,16 @@
 - `blocking_conditions`
 - `allowed_next_stage`
 - `human_signoff_required`
+
+### 3.4 Классификация открытых вопросов
+
+Каждый открытый вопрос, gap или defect должен получить одну категорию:
+
+- `implementation_blocker` — реализация или безопасный выпуск невозможны; downstream implementation запрещён до решения.
+- `stage_blocker` — текущий следующий этап не может быть выполнен без решения; другие независимые действия возможны только при явной фиксации ограничения.
+- `carry_forward` — вопрос не мешает текущему этапу, но обязан перейти в `RUN.md`, stage packet и последующий review.
+
+Нельзя использовать `blocked` без указания категории и evidence. Вопрос категории `carry_forward` не должен останавливать маршрут автоматически; он требует владельца, срока или условия пересмотра.
 
 ## 4. Единый формат артефактного пакета
 
@@ -100,6 +113,7 @@
 
 - открытые допущения
 - открытые gaps
+- BA-layer gaps
 - blocking issues
 - residual risks
 
@@ -108,6 +122,16 @@
 - ссылки на upstream артефакты
 - ссылки на downstream обязательства
 - coverage gaps
+- BA-to-engineering traceability links
+
+### 4.7 BA State
+
+- stakeholder and glossary state
+- business rules coverage
+- use case coverage
+- domain and data-definition state
+- acceptance criteria coverage
+- story-layer applicability, если релевантно
 
 ## 5. Общие правила handoff
 
@@ -180,9 +204,12 @@ Stage 1 разрешен только если:
 
 - problem statement
 - actor map
+- stakeholder map
 - goals and non-goals
 - success metrics
 - constraint register
+- business context and scope
+- glossary
 - risk framing
 
 #### Gate Rule
@@ -191,6 +218,8 @@ Stage 2 разрешен только если:
 
 - проблема сформулирована как проблема, а не как feature wishlist
 - акторы и границы определены
+- stakeholders и business context определены
+- glossary seed сформирован для критичных терминов
 - success logic хотя бы частично определена
 
 ### Stage 2 -> Stage 3
@@ -203,6 +232,8 @@ Stage 2 разрешен только если:
 
 - functional requirements
 - business rules
+- use case inventory or use case model
+- acceptance criteria seed
 - NFR baseline
 - data requirements
 - integration requirements
@@ -214,6 +245,8 @@ Stage 3 разрешен только если:
 
 - high-impact requirements testable
 - non-functional expectations видимы
+- use cases и business rules не противоречат scope boundaries
+- data obligations достаточно явны для downstream domain modeling
 - gaps явно классифицированы
 
 ### Stage 3 -> Stage 4
@@ -227,6 +260,8 @@ Stage 3 разрешен только если:
 - system flow model
 - state transition model
 - domain entity model
+- entity lifecycle model
+- use case realization
 - decision and rule model
 - exception and edge case model
 
@@ -236,6 +271,8 @@ Stage 4 разрешен только если:
 
 - логика системы описана без архитектурных догадок
 - есть flows, states, entities, edge cases
+- high-impact use cases реализованы на logical level
+- domain and lifecycle modeling достаточно для downstream data and architecture design
 
 ### Stage 4 -> Stage 5
 
@@ -274,6 +311,12 @@ Stage 5 разрешен только если:
 - API Specification
 - Data Model
 - UX / User Flows
+- Business Rules Catalog
+- Use Case Model
+- Domain Model
+- Data Dictionary
+- Acceptance Criteria Catalog
+- User Stories, если required
 - consistency and traceability register
 
 #### Gate Rule
@@ -282,6 +325,7 @@ Stage 6 разрешен только если:
 
 - целевой пакет документов собран
 - документы не противоречат друг другу
+- BA-layer artifacts собраны или явно встроены без потери содержания
 
 ### Stage 6 -> Stage 7
 
@@ -318,7 +362,17 @@ Stage 7 разрешен только если:
 - validation report
 - readiness decision
 - defect and gap register
+- BA sufficiency assessment
 - residual risk register
+- BA-to-engineering consistency assessment
+
+#### Gate Rule
+
+Implementation handoff разрешен только если:
+
+- BA-layer достаточен для типа проекта и contractual context
+- use cases, business rules, domain model и acceptance criteria не имеют blocking gaps
+- BA-to-engineering traceability не имеет critical breaks
 - implementation handoff recommendation
 
 #### Gate Rule

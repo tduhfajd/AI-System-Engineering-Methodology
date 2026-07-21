@@ -7,6 +7,7 @@
 | Методологический слой | Skill | Назначение | Основной результат |
 |---|---|---|---|
 | Workflow control | `methodology-orchestrator` | Управление переходами между этапами | допустимый следующий этап, handoff packet, gate status |
+| Independent control | `independent-package-review` | Независимая проверка собранного пакета | findings, blockers, evidence и verdict готовности |
 
 ## 2. Stage mapping
 
@@ -33,6 +34,7 @@
 | `use-case-modeler` | Строит use case inventory и detailed use cases | Stage 2 и Stage 3 |
 | `domain-data-modeler` | Усиливает domain model и data dictionary | Stage 3 и Stage 5 |
 | `acceptance-criteria-builder` | Формирует acceptance criteria seed и catalog | Stage 2, Stage 5, Stage 7 |
+| `independent-package-review` | Независимо проверяет готовность и доказательства | после Stage 5 или Stage 7 |
 
 ## 4. Shared references
 
@@ -41,6 +43,7 @@
 | `_shared/references/stage-packet.md` | Единый handoff contract между этапами |
 | `_shared/references/gate-decision.md` | Единый формат решения о переходе |
 | `_shared/references/scoring-packet.md` | Единый формат scoring output |
+| `_shared/references/run-manifest.md` | Журнал состояния прогона между этапами и сессиями |
 
 ## 5. Human checkpoints
 

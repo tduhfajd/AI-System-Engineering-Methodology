@@ -1,0 +1,6 @@
+interface:
+  display_name: "Independent Package Review"
+  short_description: "Независимо проверяет готовность пакета"
+  default_prompt: "Use $independent-package-review to independently review the assembled methodology package and report blocking defects, evidence, and readiness."
+policy:
+  allow_implicit_invocation: true

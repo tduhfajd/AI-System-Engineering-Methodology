@@ -7,6 +7,9 @@ description: Use when running Stage 0 of the AI System Engineering Methodology t
 
 ## Обязательные источники
 
+- `../_asef-shared/references/output-language-policy.md`
+- `../_asef-shared/references/run-manifest.md`
+
 - `../_asef-shared/methodology/00-normalization.md`
 - `../_asef-shared/automation/stage-automation-contracts.md`
 - `../_asef-shared/references/stage-packet.md`
@@ -20,6 +23,7 @@ description: Use when running Stage 0 of the AI System Engineering Methodology t
 ## Вход
 
 - исходный продуктовый input
+- verdict и evidence pre-gate, если он был проведён
 - prior decisions, если они есть
 - execution constraints, если они есть
 
@@ -43,6 +47,14 @@ description: Use when running Stage 0 of the AI System Engineering Methodology t
 - `quality_checks`
 - `human_review_state`
 - `gate_decision`
+
+## Журнал прогона
+
+Если известна папка результатов, прочитай и обнови `RUN.md`: зафиксируй созданные артефакты, открытые вопросы, решения, blockers и следующее действие.
+
+## Языковой контракт
+
+Следуй `output-language-policy.md`: весь результат и все создаваемые артефакты оформляй на русском языке и выполни проверку языка перед выдачей.
 
 ## Границы
 

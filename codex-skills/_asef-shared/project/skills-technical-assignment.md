@@ -37,9 +37,9 @@
 
 Система skills должна опираться на уже существующие артефакты репозитория:
 
-- [methodology](../methodology)
-- [templates](../templates)
-- [automation](../automation)
+- [methodology](/Users/vadimevgrafov/ai-system-engineering-metodology/methodology)
+- [templates](/Users/vadimevgrafov/ai-system-engineering-metodology/templates)
+- [automation](/Users/vadimevgrafov/ai-system-engineering-metodology/automation)
 
 Особенно обязательно использовать:
 

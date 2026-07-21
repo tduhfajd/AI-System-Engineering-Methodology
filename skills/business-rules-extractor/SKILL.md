@@ -7,6 +7,9 @@ description: Use when business rules, constraints, calculation logic, state-tran
 
 ## Обязательные источники
 
+- `../_shared/references/output-language-policy.md`
+- `../_shared/references/run-manifest.md`
+
 - `../../methodology/ba-layer-model.md`
 - `../../templates/business-rules-catalog-template.md`
 
@@ -30,6 +33,14 @@ description: Use when business rules, constraints, calculation logic, state-tran
 - calculation rules
 - transition rules
 - rule conflicts and gaps
+
+## Журнал прогона
+
+Если известна папка результатов, прочитай и обнови `RUN.md`: зафиксируй созданные артефакты, открытые вопросы, решения, blockers и следующее действие.
+
+## Языковой контракт
+
+Следуй `output-language-policy.md`: весь результат и все создаваемые артефакты оформляй на русском языке и выполни проверку языка перед выдачей.
 
 ## Границы
 

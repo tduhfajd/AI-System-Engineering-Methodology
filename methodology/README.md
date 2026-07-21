@@ -50,6 +50,8 @@
 
 Русскоязычные канонические шаблоны финальных артефактов находятся в `templates/`.
 
+Минимально достаточный набор артефактов для разных типов проектов определяется в [artifact-applicability-matrix.md](artifact-applicability-matrix.md).
+
 ## Automation Contracts
 
 Формальные контракты перехода между этапами находятся в `automation/`.

@@ -12,6 +12,8 @@
 
 - `Functional Requirements Set`
 - `Business Rules Register`
+- `Use Case Inventory / Use Case Model`
+- `Acceptance Criteria Seed`
 - `Non-Functional Requirements Baseline`
 - `Data Requirements`
 - `Integration Requirements`
@@ -30,6 +32,8 @@
 - ключевые system flows смоделированы
 - state transitions явно описаны там, где есть stateful behavior
 - domain entities и их logical relationships явно определены
+- entity lifecycle model явно описан там, где lifecycle materially affects behavior
+- use case realization существует для ключевых сценариев
 - decisions, rules и invariants, управляющие поведением, явно определены
 - exception и failure paths представлены
 - assumptions и unresolved model gaps явно зафиксированы
@@ -40,10 +44,12 @@
 1. `System Flow Model`
 2. `State Transition Model`
 3. `Domain Entity Model`
-4. `Decision and Rule Model`
-5. `Exception and Edge Case Model`
-6. `Model Assumptions and Gaps Register`
-7. `System Modeling Review Decision`
+4. `Entity Lifecycle Model`
+5. `Use Case Realization`
+6. `Decision and Rule Model`
+7. `Exception and Edge Case Model`
+8. `Model Assumptions and Gaps Register`
+9. `System Modeling Review Decision`
 
 ## Каноническая модель выхода
 
@@ -77,14 +83,33 @@
 Нужно зафиксировать logical entities, которые требуются для поведения системы:
 
 - имена сущностей
+- ключевые атрибуты на logical level
 - их смысл
 - ключевые relationships
+- cardinality, если она materially affects behavior
 - ownership на domain level
 - значение для жизненного цикла
 
 Это еще не storage schema и не physical data design.
 
-### 4. Decision and Rule Model
+### 4. Entity Lifecycle Model
+
+Нужно отдельно зафиксировать:
+
+- какие сущности проходят lifecycle
+- какие события меняют их состояние
+- какие transitions допустимы и недопустимы
+- какие бизнес-правила зависят от lifecycle
+
+### 5. Use Case Realization
+
+Для ключевых use cases нужно показать:
+
+- как use case раскладывается на flow, state transitions, decisions и entities
+- где возникают alternate и exception flows
+- какие invariants должны сохраняться в рамках сценария
+
+### 6. Decision and Rule Model
 
 Нужно явно показать:
 
@@ -96,7 +121,7 @@
 
 Rules должны быть видны как отдельные model elements, а не спрятаны внутри flow prose.
 
-### 5. Exception and Edge Case Model
+### 7. Exception and Edge Case Model
 
 Нужно описать:
 
@@ -107,7 +132,7 @@ Rules должны быть видны как отдельные model elements,
 - actor-visible failure outcomes
 - operator-visible failure outcomes
 
-### 6. Model Assumptions and Gaps Register
+### 8. Model Assumptions and Gaps Register
 
 Нужно зафиксировать:
 
@@ -118,7 +143,7 @@ Rules должны быть видны как отдельные model elements,
 
 Для каждого пункта нужно отметить, блокирует ли он architecture design.
 
-### 7. System Modeling Review Decision
+### 9. System Modeling Review Decision
 
 Этап должен завершаться одним из статусов:
 
@@ -148,9 +173,14 @@ Rules должны быть видны как отдельные model elements,
 
 ### Шаг 3. Найти сущности и отношения
 
-Нужно вывести сущности, без которых поведение системы невозможно, и описать их logical relationships.
+Нужно вывести сущности, без которых поведение системы невозможно, и описать их:
 
-### Шаг 4. Определить states и transitions
+- logical relationships
+- ключевые logical attributes
+- cardinality
+- роль в use case realization
+
+### Шаг 4. Определить states, transitions и entity lifecycles
 
 Там, где поведение зависит от жизненного цикла или progression over time, state model должен быть явно описан, а не размазан по разным flow descriptions.
 
@@ -168,7 +198,7 @@ Rules должны быть видны как отдельные model elements,
 - происходят duplicate или conflicting actions
 - ломаются timing assumptions
 
-### Шаг 7. Проверить coverage против требований
+### Шаг 7. Проверить coverage против требований и use cases
 
 Нужно убедиться, что каждый high-impact requirement представлен хотя бы одним из элементов:
 
@@ -177,6 +207,12 @@ Rules должны быть видны как отдельные model elements,
 - relationship между domain entities
 - decision или invariant
 - exception path
+
+И что каждый high-impact use case представлен хотя бы:
+
+- одним primary flow
+- alternate или exception path, если это требуется бизнес-смыслом
+- связью с acceptance intent
 
 ### Шаг 8. Выпустить system modeling review decision
 
@@ -195,6 +231,7 @@ AI может:
 - выводить candidate states и transitions из языка требований
 - выявлять invariants, missing branches и modeling gaps
 - строить начальную traceability от требований к logical model elements
+- превращать use cases в use case realizations и domain/data behavior views
 
 AI не должен:
 
@@ -209,6 +246,7 @@ Human review обязателен для:
 
 - утверждения интерпретации high-impact flows
 - валидации domain entities и state boundaries
+- подтверждения entity lifecycle logic и use case realization
 - подтверждения exception behavior там, где есть существенное business impact
 - решения, допустимы ли remaining modeling gaps для architecture work
 - принятия или отклонения system modeling review decision
@@ -216,8 +254,10 @@ Human review обязателен для:
 ## Gate Review Checklist
 
 - [ ] Primary flows явно описаны и трассируются к требованиям.
+- [ ] Key use cases реализованы на уровне flows, entities и decisions.
 - [ ] State transitions смоделированы там, где lifecycle behavior критичен.
 - [ ] Domain entities понятны на logical level.
+- [ ] Entity lifecycles и logical relationships достаточно определены для downstream data and architecture design.
 - [ ] Decisions, invariants и business rules явно видимы.
 - [ ] Exception и edge cases смоделированы, а не подразумеваются.
 - [ ] Модель не навязывает architecture или technology раньше времени.
@@ -243,6 +283,12 @@ Human review обязателен для:
 Симптом: lifecycle behavior распределено по разным требованиям и flows без coherent state model.
 
 Митигирующее действие: централизовать state transitions там, где поведение зависит от progression over time.
+
+### Failure Mode: weak domain model
+
+Симптом: flows описаны, но downstream architect или data designer все еще не понимает, какие сущности, связи и lifecycle реально составляют предметную область.
+
+Митигирующее действие: делать domain entity model и entity lifecycle model обязательными output'ами этапа.
 
 ### Failure Mode: requirement-model drift
 

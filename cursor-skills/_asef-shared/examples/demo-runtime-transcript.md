@@ -6,7 +6,7 @@
 
 ### Input
 
-- [demo-input.md](demo-input.md)
+- [demo-input.md](/Users/vadimevgrafov/ai-system-engineering-metodology/skills/examples/demo-input.md)
 
 ### Orchestrator Output
 

@@ -7,6 +7,9 @@ description: Use when running Stage 4 of the AI System Engineering Methodology t
 
 ## Обязательные источники
 
+- `../_shared/references/output-language-policy.md`
+- `../_shared/references/run-manifest.md`
+
 - `../../methodology/04-architecture-design.md`
 - `../../automation/stage-automation-contracts.md`
 - `../_shared/references/stage-packet.md`
@@ -43,6 +46,14 @@ description: Use when running Stage 4 of the AI System Engineering Methodology t
 - `quality_checks`
 - `human_review_state`
 - `Architecture Review Decision`
+
+## Журнал прогона
+
+Если известна папка результатов, прочитай и обнови `RUN.md`: зафиксируй созданные артефакты, открытые вопросы, решения, blockers и следующее действие.
+
+## Языковой контракт
+
+Следуй `output-language-policy.md`: весь результат и все создаваемые артефакты оформляй на русском языке и выполни проверку языка перед выдачей.
 
 ## Границы
 

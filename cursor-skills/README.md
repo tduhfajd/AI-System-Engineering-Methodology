@@ -1,27 +1,14 @@
 # Cursor Skills Bundle
 
-Этот каталог — portable bundle **Agent Skills для Cursor**: те же workflow и ссылки, что в `codex-skills`, но без Codex-специфичных файлов (`agents/openai.yaml`). Каждый skill — каталог с `SKILL.md` и YAML frontmatter (`name`, `description`), как ожидает Cursor.
+Portable bundle для `.cursor/skills/` проекта или `~/.cursor/skills/`. Скопируйте всё содержимое каталога и сохраните `_asef-shared` на одном уровне с папками skills:
 
-## Что внутри
+```bash
+mkdir -p /path/to/project/.cursor/skills
+cp -R ./cursor-skills/* /path/to/project/.cursor/skills/
+```
 
-- stage skills `stage-00-normalization` — `stage-07-validation`
-- `methodology-orchestrator`
-- supporting skills: `artifact-template-loader`, `traceability-checker`, `scoring-evaluator`, `stakeholder-glossary-builder`, `use-case-modeler`, `business-rules-extractor`, `domain-data-modeler`, `acceptance-criteria-builder`
-- общий reference layer в `_asef-shared` (пути в SKILL.md вида `../_asef-shared/...` рассчитаны на то, что `_asef-shared` лежит рядом с папками skills в одном родительском каталоге)
+Основной вход — `methodology-orchestrator`: он выбирает `quick_discovery`, `full_delivery` или `existing_spec_review`, сохраняет состояние в `RUN.md` и соблюдает human checkpoints.
 
-## Как установить в Cursor
+Для новой стартап-идеи в России доступен optional pre-gate `roast-startup-ru`.
 
-**Проект (рекомендуется для этой методологии):** скопируй содержимое `cursor-skills/` в `.cursor/skills/` в корне репозитория (или положи туда симлинк на этот каталог). Обязательно сохрани `_asef-shared` на одном уровне с каталогами skills.
-
-**Персонально:** скопируй то же содержимое в `~/.cursor/skills/`, чтобы skills были доступны во всех проектах.
-
-Cursor подхватывает skills из этих путей автоматически; отдельная регистрация не нужна.
-
-## Отличия от `codex-skills`
-
-- нет каталогов `agents/` и YAML для Codex CLI
-- инструкции по установке ориентированы на `~/.cursor/skills` и `.cursor/skills`
-
-## Ограничение
-
-Bundle автономен на уровне skill references, без runtime automation и внешних интеграций: knowledge/workflow layer для агента Cursor.
+Полная инструкция, примеры запросов, все skills и правила обновления bundle находятся в [корневом README](../README.md).
