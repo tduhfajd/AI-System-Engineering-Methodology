@@ -9,6 +9,8 @@ fail() { printf 'FAIL: %s\n' "$1" >&2; failures=$((failures + 1)); }
 [[ -f skills/_shared/references/run-manifest.md ]] || fail 'run-manifest contract is missing'
 [[ -f skills/independent-package-review/SKILL.md ]] || fail 'independent reviewer skill is missing'
 [[ -f skills/roast-startup-ru/SKILL.md ]] || fail 'startup viability skill is missing'
+[[ -f skills/fast-track-validation/SKILL.md ]] || fail 'fast-track validation skill is missing'
+[[ -f skills/fast-track-validation/references/experiment-template.md ]] || fail 'fast-track experiment template is missing'
 [[ -f methodology/idea-viability-pre-gate.md ]] || fail 'idea-viability pre-gate is missing'
 [[ -f methodology/artifact-applicability-matrix.md ]] || fail 'artifact applicability matrix is missing'
 
@@ -18,10 +20,15 @@ done
 
 rg -Fq 'RUN.md' skills/methodology-orchestrator/SKILL.md || fail 'orchestrator does not manage RUN.md'
 rg -Fq '$roast-startup-ru' skills/methodology-orchestrator/SKILL.md || fail 'orchestrator does not offer the viability pre-gate'
+rg -Fq '$fast-track-validation' skills/methodology-orchestrator/SKILL.md || fail 'orchestrator does not route validation experiments'
 rg -Fq 'Независимый review' skills/independent-package-review/SKILL.md || fail 'reviewer does not define an independent review'
 rg -Fq 'Гипотеза ценности' methodology/01-problem-formalization.md || fail 'Stage 1 has no value-hypothesis check'
 for class in implementation_blocker stage_blocker carry_forward; do
   rg -Fq "\`$class\`" automation/stage-automation-contracts.md || fail "gate classification lacks $class"
+done
+
+for decision in PROCEED ITERATE PIVOT STOP; do
+  rg -Fq "\`$decision\`" skills/fast-track-validation/SKILL.md || fail "fast-track skill lacks $decision decision"
 done
 
 if (( failures > 0 )); then exit 1; fi

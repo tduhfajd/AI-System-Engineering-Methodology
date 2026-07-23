@@ -52,6 +52,8 @@
 
 Минимально достаточный набор артефактов для разных типов проектов определяется в [artifact-applicability-matrix.md](artifact-applicability-matrix.md).
 
+Новые идеи могут пройти [pre-gate жизнеспособности](idea-viability-pre-gate.md). Критичные неподтверждённые гипотезы после verdict `VALIDATE` проверяются коротким измеримым экспериментом через `$fast-track-validation` до дорогой спецификации или реализации.
+
 ## Automation Contracts
 
 Формальные контракты перехода между этапами находятся в `automation/`.

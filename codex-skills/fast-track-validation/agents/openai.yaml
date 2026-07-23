@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fast Track Validation"
+  short_description: "Быстрая проверка продуктовых гипотез"
+  default_prompt: "Используй $fast-track-validation, чтобы превратить мою самую рискованную продуктовую гипотезу в измеримый недорогой эксперимент и решение."

@@ -24,6 +24,7 @@ description: Use when running Stage 0 of the AI System Engineering Methodology t
 
 - исходный продуктовый input
 - verdict и evidence pre-gate, если он был проведён
+- hypothesis register, experiment decision и evidence из `$fast-track-validation`, если проверка проводилась
 - prior decisions, если они есть
 - execution constraints, если они есть
 

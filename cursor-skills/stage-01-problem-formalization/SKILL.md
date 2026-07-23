@@ -37,7 +37,7 @@ description: Use when running Stage 1 of the AI System Engineering Methodology t
 5. Зафиксируй constraints, metrics и risks.
 6. Собери glossary seed для критичных доменных терминов.
 7. Выбери минимально достаточный пакет по матрице применимости и зафиксируй исключённые артефакты с причиной.
-8. Для новой идеи проведи опциональную проверку `Гипотеза ценности` и отрази её сигнал валидации в `RUN.md`.
+8. Для новой идеи сформулируй `Гипотезу ценности`; если она критична и не подтверждена evidence, передай её в `$fast-track-validation` и отрази статус эксперимента в `RUN.md`.
 9. Верни `Problem Review Decision`.
 10. Сверяй форму handoff с stage packet examples и не продвигай этап, если проблема неотделима от нерешенного scope conflict.
 
