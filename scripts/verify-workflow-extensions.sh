@@ -31,6 +31,14 @@ for decision in PROCEED ITERATE PIVOT STOP; do
   rg -Fq "\`$decision\`" skills/fast-track-validation/SKILL.md || fail "fast-track skill lacks $decision decision"
 done
 
+for status in PLANNED RUNNING COMPLETED CANCELLED; do
+  rg -Fq "\`$status\`" skills/fast-track-validation/SKILL.md || fail "fast-track skill lacks $status lifecycle status"
+  rg -Fq "\`$status\`" skills/fast-track-validation/references/experiment-template.md || fail "fast-track template lacks $status lifecycle status"
+done
+
+rg -Fq '`PENDING`' skills/fast-track-validation/SKILL.md || fail 'fast-track skill cannot represent a decision pending evidence'
+rg -Fq 'Не использовать `ITERATE`' skills/fast-track-validation/SKILL.md || fail 'fast-track skill may disguise missing evidence as ITERATE'
+
 if (( failures > 0 )); then exit 1; fi
 
 bash scripts/build-bundles.sh --check

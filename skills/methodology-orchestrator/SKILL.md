@@ -49,15 +49,16 @@ description: Use when executing the AI System Engineering Methodology end-to-end
 1. Прочитай существующий `RUN.md` или создай его в папке результатов; зафиксируй выбранный режим, входы и стартовые открытые риски.
 2. Для новой идеи с неподтверждённым спросом предложи optional pre-gate `$roast-startup-ru`; обработай его verdict по правилам `idea-viability-pre-gate.md`.
 3. Если pre-gate вернул `VALIDATE` или осталась критичная неподтверждённая гипотеза, передай её в `$fast-track-validation` до дорогой спецификации или реализации.
-4. При `PROCEED` передай evidence и остаточные риски в Stage 0. При `ITERATE`, `PIVOT` или `STOP` следуй решению Fast Track и не превращай неподтверждённую гипотезу в факт.
-5. Определи текущий `stage_id`, доступные входы и открытые риски.
-6. Проверь, разрешён ли следующий этап по gate rules.
-7. Если текущий этап требует mandatory human review, не запускай downstream stage автоматически.
-8. Передай downstream skill только явные входы, решения, assumptions, gaps и blocking issues.
-9. Если статус `blocked`, верни причину, blocking conditions и допустимое следующее действие.
-10. Сверяй expected handoff и stop conditions с example references, но не копируй их mechanically, если фактический кейс отличается.
-11. Не пропускай BA-layer: stakeholder map, glossary, business rules, use cases, domain/data analysis и acceptance criteria должны передаваться downstream так же явно, как engineering artifacts.
-12. После каждого перехода обнови `RUN.md`: текущий этап, созданные артефакты, решения, blockers и следующее допустимое действие.
+4. При статусах `PLANNED`, `RUNNING` или `CANCELLED` и решении `PENDING` не считай гипотезу проверенной; разрешай только ограниченный discovery и следующее действие эксперимента.
+5. При `COMPLETED + PROCEED` передай evidence и остаточные риски в Stage 0. При `COMPLETED + ITERATE/PIVOT/STOP` следуй решению Fast Track и не превращай неподтверждённую гипотезу в факт.
+6. Определи текущий `stage_id`, доступные входы и открытые риски.
+7. Проверь, разрешён ли следующий этап по gate rules.
+8. Если текущий этап требует mandatory human review, не запускай downstream stage автоматически.
+9. Передай downstream skill только явные входы, решения, assumptions, gaps и blocking issues.
+10. Если статус `blocked`, верни причину, blocking conditions и допустимое следующее действие.
+11. Сверяй expected handoff и stop conditions с example references, но не копируй их mechanically, если фактический кейс отличается.
+12. Не пропускай BA-layer: stakeholder map, glossary, business rules, use cases, domain/data analysis и acceptance criteria должны передаваться downstream так же явно, как engineering artifacts.
+13. После каждого перехода обнови `RUN.md`: текущий этап, созданные артефакты, решения, blockers и следующее допустимое действие.
 
 ## Обязательный выход
 
@@ -72,6 +73,7 @@ description: Use when executing the AI System Engineering Methodology end-to-end
 - `selected_mode`
 - `run_manifest_status`
 - `validation_experiment_status`, если применимо
+- `validation_decision`, если применимо
 
 ## Языковой контракт
 

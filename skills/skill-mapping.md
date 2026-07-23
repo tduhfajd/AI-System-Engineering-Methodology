@@ -7,7 +7,7 @@
 | Методологический слой | Skill | Назначение | Основной результат |
 |---|---|---|---|
 | Idea viability | `roast-startup-ru` | Проверка исходной жизнеспособности новой идеи | `GO`, `VALIDATE`, `PIVOT` или `STOP` |
-| Hypothesis validation | `fast-track-validation` | Быстрый измеримый эксперимент для критичной гипотезы | experiment plan, evidence log, `PROCEED`, `ITERATE`, `PIVOT` или `STOP` |
+| Hypothesis validation | `fast-track-validation` | Быстрый измеримый эксперимент для критичной гипотезы | статус `PLANNED/RUNNING/COMPLETED/CANCELLED`, decision `PENDING/PROCEED/ITERATE/PIVOT/STOP` |
 | Workflow control | `methodology-orchestrator` | Управление переходами между этапами | допустимый следующий этап, handoff packet, gate status |
 | Independent control | `independent-package-review` | Независимая проверка собранного пакета | findings, blockers, evidence и verdict готовности |
 
