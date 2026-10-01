@@ -29,6 +29,7 @@
 | Skill | Роль | Где используется |
 |---|---|---|
 | `artifact-template-loader` | Подгружает канонический шаблон документа | прежде всего Stage 5 и Stage 7 |
+| `platform-risk-review` | Оценивает устойчивость к AI-платформам, отраслевым конкурентам и самостоятельной сборке | прожарка, Fast Track, Stage 0/1/4/7 или отдельная оценка действующего продукта |
 | `traceability-checker` | Проверяет сквозную трассировку | Stage 2, Stage 5, Stage 7 |
 | `scoring-evaluator` | Считает scoring и confidence | Stage 7, а также stage-level review при необходимости |
 | `stakeholder-glossary-builder` | Строит stakeholder map и glossary | прежде всего Stage 1 |

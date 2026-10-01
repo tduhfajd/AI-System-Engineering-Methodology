@@ -23,6 +23,7 @@ description: Use when running Stage 4 of the AI System Engineering Methodology t
 ## Вход
 
 - outputs Stage 3
+- `Platform Risk Report`, принятые ограничения и результаты проверки гипотез, если есть
 
 ## Сделай
 
@@ -30,9 +31,10 @@ description: Use when running Stage 4 of the AI System Engineering Methodology t
 2. Определи component boundaries и interactions.
 3. Зафиксируй data ownership и integration boundaries.
 4. Проверь structural alignment with NFR.
-5. Зафиксируй architectural decisions, risks и gaps.
-6. Верни `Architecture Review Decision`.
-7. Если architecture нарушает mandatory boundary или failure isolation, верни `blocked`.
+5. Если есть отчёт `$platform-risk-review`, оцени варианты замены поставщика, переноса данных и деградации по `../../methodology/platform-risk-review.md`. Включай только обоснованные решения с ценой и альтернативами; мульти-модельность сама по себе не является защитой бизнеса или обязательным требованием.
+6. Зафиксируй architectural decisions, risks и gaps.
+7. Верни `Architecture Review Decision`.
+8. Если architecture нарушает mandatory boundary или failure isolation, верни `blocked`.
 
 ## Обязательный выход
 

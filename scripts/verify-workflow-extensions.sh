@@ -11,6 +11,10 @@ fail() { printf 'FAIL: %s\n' "$1" >&2; failures=$((failures + 1)); }
 [[ -f skills/roast-startup-ru/SKILL.md ]] || fail 'startup viability skill is missing'
 [[ -f skills/fast-track-validation/SKILL.md ]] || fail 'fast-track validation skill is missing'
 [[ -f skills/fast-track-validation/references/experiment-template.md ]] || fail 'fast-track experiment template is missing'
+[[ -f skills/platform-risk-review/SKILL.md ]] || fail 'platform risk review skill is missing'
+[[ -f skills/platform-risk-review/references/platform-risk-framework.md ]] || fail 'platform risk framework is missing'
+[[ -f skills/platform-risk-review/references/report-template.md ]] || fail 'platform risk report template is missing'
+[[ -f methodology/platform-risk-review.md ]] || fail 'platform risk handoff contract is missing'
 [[ -f methodology/idea-viability-pre-gate.md ]] || fail 'idea-viability pre-gate is missing'
 [[ -f methodology/artifact-applicability-matrix.md ]] || fail 'artifact applicability matrix is missing'
 
@@ -21,6 +25,9 @@ done
 rg -Fq 'RUN.md' skills/methodology-orchestrator/SKILL.md || fail 'orchestrator does not manage RUN.md'
 rg -Fq '$roast-startup-ru' skills/methodology-orchestrator/SKILL.md || fail 'orchestrator does not offer the viability pre-gate'
 rg -Fq '$fast-track-validation' skills/methodology-orchestrator/SKILL.md || fail 'orchestrator does not route validation experiments'
+for receiver in methodology-orchestrator roast-startup-ru fast-track-validation stage-00-normalization stage-01-problem-formalization stage-04-architecture-design stage-07-validation; do
+  rg -Fq '$platform-risk-review' "skills/$receiver/SKILL.md" || fail "$receiver does not integrate platform risk review"
+done
 rg -Fq 'Независимый review' skills/independent-package-review/SKILL.md || fail 'reviewer does not define an independent review'
 rg -Fq 'Гипотеза ценности' methodology/01-problem-formalization.md || fail 'Stage 1 has no value-hypothesis check'
 for class in implementation_blocker stage_blocker carry_forward; do

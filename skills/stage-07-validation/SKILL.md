@@ -38,8 +38,9 @@ description: Use when running Stage 7 of the AI System Engineering Methodology t
 2. Выяви defects, gaps, BA gaps и residual risks.
 3. Примени scoring model, включая `business_clarity` и `data_definition_quality`.
 4. Проверь blocking override rule.
-5. Сформируй readiness decision и handoff recommendation.
-6. Сверяй финальный handoff с runtime transcript и negative-path rules.
+5. Если проводился `$platform-risk-review`, проверь сохранение существенных рисков, источников, действий и условий пересмотра по `../../methodology/platform-risk-review.md`. Непроверенный прогноз не считается фактом; высокий риск не является автоматическим `implementation_blocker`.
+6. Сформируй readiness decision и handoff recommendation.
+7. Сверяй финальный handoff с runtime transcript и negative-path rules.
 
 ## Обязательный выход
 

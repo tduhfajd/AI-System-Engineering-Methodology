@@ -27,6 +27,7 @@ description: Use when running Stage 1 of the AI System Engineering Methodology t
 ## Вход
 
 - outputs Stage 0
+- `Platform Risk Report` и принятое стратегическое решение, если есть
 
 ## Сделай
 
@@ -38,8 +39,9 @@ description: Use when running Stage 1 of the AI System Engineering Methodology t
 6. Собери glossary seed для критичных доменных терминов.
 7. Выбери минимально достаточный пакет по матрице применимости и зафиксируй исключённые артефакты с причиной.
 8. Для новой идеи сформулируй `Гипотезу ценности`; если она критична и не подтверждена evidence, передай её в `$fast-track-validation` и отрази статус эксперимента в `RUN.md`.
-9. Верни `Problem Review Decision`.
-10. Сверяй форму handoff с stage packet examples и не продвигай этап, если проблема неотделима от нерешенного scope conflict.
+9. Если применим `$platform-risk-review`, учти остаточную ценность в гипотезе ценности и границах продукта по `../_asef-shared/methodology/platform-risk-review.md`. Высокий риск сам по себе не блокирует этап; существенную неопределённость передай в Fast Track.
+10. Верни `Problem Review Decision`.
+11. Сверяй форму handoff с stage packet examples и не продвигай этап, если проблема неотделима от нерешенного scope conflict.
 
 ## Обязательный выход
 
